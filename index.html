@@ -16,21 +16,21 @@
             --shadow-elevation-high: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
 
-        /* Premium Aura Theme */
+       
         .theme-aura {
-            --primary-color: #7B1FA2; /* Deep Purple */
-            --secondary-color: #00BCD4; /* Cyan */
-            --accent-glow: #BA68C8; /* Lighter Purple */
-            --bg-color: #0d0d0d; /* Dark background */
-            --surface-color: #1a1a1a; /* Darker surface */
-            --font-color: #e0e0e0; /* Light text */
-            --muted-font-color: #9e9e9e; /* Muted text */
+            --primary-color: #7B1FA2; 
+            --secondary-color: #00BCD4; 
+            --accent-glow: #BA68C8; 
+            --bg-color: #0d0d0d; 
+            --surface-color: #1a1a1a; 
+            --font-color: #e0e0e0; 
+            --muted-font-color: #9e9e9e; 
             
-            --user-msg-bg: linear-gradient(135deg, var(--primary-color) 0%, #4a148c 100%); /* Purple gradient */
-            --bot-msg-bg: #2b2b2b; /* Slightly lighter dark for bot messages */
-            --header-bg: linear-gradient(90deg, #42006e, #005663); /* Dark purple to dark cyan */
+            --user-msg-bg: linear-gradient(135deg, var(--primary-color) 0%, #4a148c 100%); 
+            --bot-msg-bg: #2b2b2b; 
+            --header-bg: linear-gradient(90deg, #42006e, #005663); 
             
-            --border-color: #333; /* Subtle border */
+            --border-color: #333; 
             --input-bg: #222;
             --input-border: #444;
             --send-button-color: var(--secondary-color);
@@ -41,224 +41,29 @@
             font-family: var(--font-secondary);
             margin: 0;
             padding: 0;
-            background-color: transparent; /* Changed to transparent to reveal the pattern */
+            background-color: var(--bg-color);
             color: var(--font-color);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             transition: background-color 0.3s, color 0.3s;
-            overflow: hidden; /* Prevent body scrollbar */
-            position: relative; /* Needed for z-index context */
+            overflow: hidden; 
         }
-
-        /* --- NEW BACKGROUND PATTERN CSS --- */
-        .container {
-            position: fixed; /* Fixed position to cover entire viewport */
-            inset: 0; /* Top, right, bottom, left to 0 */
-            z-index: -1; /* Place it behind all other content */
-            width: 100%;
-            height: 100%;
-            --c: #09f; /* Base color for the lines */
-            background-color: #000;
-            background-image: radial-gradient(4px 100px at 0px 235px, var(--c), #0000),
-                radial-gradient(4px 100px at 300px 235px, var(--c), #0000),
-                radial-gradient(1.5px 1.5px at 150px 117.5px, var(--c) 100%, #0000 150%),
-                radial-gradient(4px 100px at 0px 252px, var(--c), #0000),
-                radial-gradient(4px 100px at 300px 252px, var(--c), #0000),
-                radial-gradient(1.5px 1.5px at 150px 126px, var(--c) 100%, #0000 150%),
-                radial-gradient(4px 100px at 0px 150px, var(--c), #0000),
-                radial-gradient(4px 100px at 300px 150px, var(--c), #0000),
-                radial-gradient(1.5px 1.5px at 150px 75px, var(--c) 100%, #0000 150%),
-                radial-gradient(4px 100px at 0px 253px, var(--c), #0000),
-                radial-gradient(4px 100px at 300px 253px, var(--c), #0000),
-                radial-gradient(1.5px 1.5px at 150px 126.5px, var(--c) 100%, #0000 150%),
-                radial-gradient(4px 100px at 0px 204px, var(--c), #0000),
-                radial-gradient(4px 100px at 300px 204px, var(--c), #0000),
-                radial-gradient(1.5px 1.5px at 150px 102px, var(--c) 100%, #0000 150%),
-                radial-gradient(4px 100px at 0px 134px, var(--c), #0000),
-                radial-gradient(4px 100px at 300px 134px, var(--c), #0000),
-                radial-gradient(1.5px 1.5px at 150px 67px, var(--c) 100%, #0000 150%),
-                radial-gradient(4px 100px at 0px 179px, var(--c), #0000),
-                radial-gradient(4px 100px at 300px 179px, var(--c), #0000),
-                radial-gradient(1.5px 1.5px at 150px 89.5px, var(--c) 100%, #0000 150%),
-                radial-gradient(4px 100px at 0px 299px, var(--c), #0000),
-                radial-gradient(4px 100px at 300px 299px, var(--c), #0000),
-                radial-gradient(1.5px 1.5px at 150px 149.5px, var(--c) 100%, #0000 150%),
-                radial-gradient(4px 100px at 0px 215px, var(--c), #0000),
-                radial-gradient(4px 100px at 300px 215px, var(--c), #0000),
-                radial-gradient(1.5px 1.5px at 150px 107.5px, var(--c) 100%, #0000 150%),
-                radial-gradient(4px 100px at 0px 281px, var(--c), #0000),
-                radial-gradient(4px 100px at 300px 281px, var(--c), #0000),
-                radial-gradient(1.5px 1.5px at 150px 140.5px, var(--c) 100%, #0000 150%),
-                radial-gradient(4px 100px at 0px 158px, var(--c), #0000),
-                radial-gradient(4px 100px at 300px 158px, var(--c), #0000),
-                radial-gradient(1.5px 1.5px at 150px 79px, var(--c) 100%, #0000 150%),
-                radial-gradient(4px 100px at 0px 210px, var(--c), #0000),
-                radial-gradient(4px 100px at 300px 210px, var(--c), #0000),
-                radial-gradient(1.5px 1.5px at 150px 105px, var(--c) 100%, #0000 150%);
-            background-size:
-                300px 235px,
-                300px 235px,
-                300px 235px,
-                300px 252px,
-                300px 252px,
-                300px 252px,
-                300px 150px,
-                300px 150px,
-                300px 150px,
-                300px 253px,
-                300px 253px,
-                300px 253px,
-                300px 204px,
-                300px 204px,
-                300px 204px,
-                300px 134px,
-                300px 134px,
-                300px 134px,
-                300px 179px,
-                300px 179px,
-                300px 179px,
-                300px 299px,
-                300px 299px,
-                300px 299px,
-                300px 215px,
-                300px 215px,
-                300px 215px,
-                300px 281px,
-                300px 281px,
-                300px 281px,
-                300px 158px,
-                300px 158px,
-                300px 158px,
-                300px 210px,
-                300px 210px,
-                300px 210px;
-            animation: hi 150s linear infinite;
-        }
-
-        .container::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: 1; /* Sits above the lines, but still behind chat-container */
-            background-image: radial-gradient(
-                circle at 50% 50%,
-                #0000 0,
-                #0000 2px,
-                hsl(0 0 4%) 2px /* Subtle dark dots */
-            );
-            background-size: 8px 8px;
-            --f: blur(1em) brightness(6);
-            animation: hii 10s linear infinite;
-        }
-
-        @keyframes hi {
-            0% {
-                background-position:
-                    0px 220px,
-                    3px 220px,
-                    151.5px 337.5px,
-                    25px 24px,
-                    28px 24px,
-                    176.5px 150px,
-                    50px 16px,
-                    53px 16px,
-                    201.5px 91px,
-                    75px 224px,
-                    78px 224px,
-                    226.5px 350.5px,
-                    100px 19px,
-                    103px 19px,
-                    251.5px 121px,
-                    125px 120px,
-                    128px 120px,
-                    276.5px 187px,
-                    150px 31px,
-                    153px 31px,
-                    301.5px 120.5px,
-                    175px 235px,
-                    178px 235px,
-                    326.5px 384.5px,
-                    200px 121px,
-                    203px 121px,
-                    351.5px 228.5px,
-                    225px 224px,
-                    228px 224px,
-                    376.5px 364.5px,
-                    250px 26px,
-                    253px 26px,
-                    401.5px 105px,
-                    275px 75px,
-                    278px 75px,
-                    426.5px 180px;
-            }
-            to {
-                background-position:
-                    0px 6800px,
-                    3px 6800px,
-                    151.5px 6917.5px,
-                    25px 13632px,
-                    28px 13632px,
-                    176.5px 13758px,
-                    50px 5416px,
-                    53px 5416px,
-                    201.5px 5491px,
-                    75px 17175px,
-                    78px 17175px,
-                    226.5px 17301.5px,
-                    100px 5119px,
-                    103px 5119px,
-                    251.5px 5221px,
-                    125px 8428px,
-                    128px 8428px,
-                    276.5px 8495px,
-                    150px 9876px,
-                    153px 9876px,
-                    301.5px 9965.5px,
-                    175px 13391px,
-                    178px 13391px,
-                    326.5px 13540.5px,
-                    200px 14741px,
-                    203px 14741px,
-                    351.5px 14848.5px,
-                    225px 18770px,
-                    228px 18770px,
-                    376.5px 18910.5px,
-                    250px 5082px,
-                    253px 5082px,
-                    401.5px 5161px,
-                    275px 6375px,
-                    278px 6375px,
-                    426.5px 6480px;
-            }
-        }
-
-        @keyframes hii {
-            0% {
-                backdrop-filter: var(--f) hue-rotate(0deg);
-            }
-            to {
-                backdrop-filter: var(--f) hue-rotate(360deg);
-            }
-        }
-        /* --- END NEW BACKGROUND PATTERN CSS --- */
-
 
         #chat-container {
             width: 95%;
-            max-width: 700px; /* Slightly narrower for focus */
+            max-width: 700px; 
             height: 90vh;
             max-height: 800px;
             background-color: var(--surface-color);
             border-radius: var(--border-radius-main);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.05); /* Enhanced shadow and inner glow */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.05); 
             border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            position: relative; /* For header glow and z-index */
-            z-index: 10; /* Ensure it's above the background pattern */
+            position: relative; 
         }
 
         #chat-header {
@@ -279,7 +84,7 @@
             border-top-right-radius: var(--border-radius-main);
         }
 
-        #chat-header::before { /* Subtle header glow effect */
+        #chat-header::before { 
             content: '';
             position: absolute;
             top: 0;
@@ -299,11 +104,11 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            -webkit-overflow-scrolling: touch; /* For smoother scrolling on mobile */
-            padding-bottom: 30px; /* Space for typing indicator */
+            -webkit-overflow-scrolling: touch; 
+            padding-bottom: 30px; 
         }
         
-        /* Custom Scrollbar for Webkit browsers */
+      
         #chat-messages::-webkit-scrollbar {
             width: 8px;
         }
@@ -323,12 +128,12 @@
         .message {
             padding: 14px 20px;
             border-radius: var(--border-radius-msg);
-            max-width: 85%; /* Slightly wider messages */
+            max-width: 85%; 
             line-height: 1.6;
             animation: fadeInMessage 0.6s ease-out forwards;
             position: relative;
             box-shadow: var(--shadow-elevation-low);
-            word-wrap: break-word; /* Ensure long words break */
+            word-wrap: break-word; 
         }
 
         @keyframes fadeInMessage {
@@ -340,7 +145,7 @@
             background: var(--user-msg-bg);
             color: white;
             align-self: flex-end;
-            border-bottom-right-radius: 5px; /* Subtle asymmetric border */
+            border-bottom-right-radius: 5px; 
             text-align: right;
         }
 
@@ -348,14 +153,14 @@
             background-color: var(--bot-msg-bg);
             color: var(--font-color);
             align-self: flex-start;
-            border-bottom-left-radius: 5px; /* Subtle asymmetric border */
+            border-bottom-left-radius: 5px; 
         }
 
         .message-timestamp {
             font-size: 0.75em;
             color: var(--muted-font-color);
             margin-top: 8px;
-            display: block; /* Ensure it's on a new line */
+            display: block; 
             opacity: 0.8;
             font-family: var(--font-secondary);
             font-weight: 300;
@@ -375,7 +180,7 @@
             flex-grow: 1;
             padding: 12px 20px;
             border: 1px solid var(--input-border);
-            border-radius: 30px; /* More rounded pill shape */
+            border-radius: 30px; 
             font-size: 1em;
             background-color: var(--input-bg);
             color: var(--font-color);
@@ -389,7 +194,7 @@
         }
         #user-input:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb, 123, 31, 162), 0.3); /* Subtle glow on focus */
+            box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb, 123, 31, 162), 0.3); 
         }
 
         #send-button {
@@ -397,23 +202,23 @@
             border: none;
             color: white;
             cursor: pointer;
-            width: 48px; /* Square button */
+            width: 48px; 
             height: 48px;
-            border-radius: 50%; /* Circular button */
+            border-radius: 50%; 
             display: flex;
             justify-content: center;
             align-items: center;
             transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             box-shadow: var(--shadow-elevation-low);
-            flex-shrink: 0; /* Prevent shrinking */
+            flex-shrink: 0; 
         }
         #send-button:hover {
             background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-            transform: translateY(-2px); /* Slight lift */
+            transform: translateY(-2px); 
             box-shadow: var(--shadow-elevation-medium);
         }
         #send-button:active {
-            transform: translateY(0); /* Press effect */
+            transform: translateY(0); 
             box-shadow: var(--shadow-elevation-low);
         }
 
@@ -430,12 +235,12 @@
         .typing-indicator {
             display: none;
             align-items: center;
-            justify-content: flex-start; /* Align left */
+            justify-content: flex-start; 
             padding: 10px 20px;
             color: var(--muted-font-color);
             font-size: 0.9em;
             gap: 5px;
-            margin-top: -10px; /* Bring it closer to previous message */
+            margin-top: -10px; 
         }
         .typing-indicator span {
             height: 8px;
@@ -454,7 +259,7 @@
             40% { transform: scale(1.0); opacity: 1; }
         }
 
-        /* Responsive adjustments */
+    
         @media (max-width: 600px) {
             #chat-container {
                 width: 100%;
@@ -488,7 +293,7 @@
     </style>
 </head>
 <body>
-    <div class="container"></div> <div id="chat-container" class="theme-aura">
+    <div id="chat-container" class="theme-aura">
         <div id="chat-header">AURAA</div>
         <div id="chat-messages">
             <div class="typing-indicator"><span></span><span></span><span></span></div>
@@ -511,9 +316,9 @@
             const messageWrapper = document.createElement('div');
             messageWrapper.classList.add('message', `${sender}-message`);
 
-            // Use innerHTML to correctly render newlines and potential markdown from the AI
+           
             const textNode = document.createElement('div');
-            // Basic replacement for newlines. For full markdown, you'd need a library.
+           
             textNode.innerHTML = text.replace(/\n/g, '<br>');
             messageWrapper.appendChild(textNode);
             
@@ -530,9 +335,9 @@
         function hideTyping() { typingIndicator.style.display = 'none'; }
         
         async function getAuraaResponse(userInput) {
-            // **IMPORTANT**: Ensure this URL is correct and points to your deployed Render backend!
+            
             const backendUrl = 'https://auraa-sb-2007.onrender.com/ask-auraa'; 
-            // Replace 'https://YOUR_BACKEND_APP_NAME.onrender.com' with your actual Render URL.
+            
 
             try {
                 const response = await fetch(backendUrl, {
@@ -547,7 +352,7 @@
                 }
 
                 const data = await response.json();
-                return data.response; // This is the pure response from me, Gemini
+                return data.response; 
 
             } catch (error) {
                 console.error("Connection Error:", error);
@@ -574,7 +379,7 @@
         window.onload = () => {
             userInputField.focus();
             setTimeout(() => {
-                addMessage("I'm online and connected to my core AI. What can I help you with?", 'auraa');
+                addMessage("Hi, I'm AURAA made by Sarnab. What can I help you with?", 'auraa');
             }, 500);
         };
     </script>
