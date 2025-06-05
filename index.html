@@ -3,43 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURAA - Your AI Companion</title>
+    <title>Company Privacy Policy</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --font-primary: 'Montserrat', sans-serif;
-            --font-secondary: 'Poppins', sans-serif;
-            --border-radius-main: 12px;
-            --border-radius-msg: 8px;
-            --shadow-elevation-low: 0 2px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.16);
-            --shadow-elevation-medium: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
-            --shadow-elevation-high: 0 8px 16px rgba(0, 0, 0, 0.16), 0 4px 8px rgba(0, 0, 0, 0.32);
-        }
+            --bg-color: #0F0F0F; /* Dark background */
+            --text-color: #E0E0E0; /* Light grey text */
+            --text-color-secondary: #A0A0A0; /* Dimmer text */
+            --border-color: #333333; /* Border for elements */
+            --header-bg: #1A1A1A; /* Slightly lighter dark for header */
+            --button-outline-color: #CCCCCC;
+            --button-text-color: #FFFFFF;
+            --container-bg-color: #1C1C1C; /* Background for the main content box */
 
-        .theme-aura {
-            --primary-color: #8E24AA;
-            --secondary-color: #29B6F6;
-            --accent-glow: #CE93D8;
-            --bg-color: #121212;
-            --surface-color: #1E1E1E;
-            --font-color: #F5F5F5;
-            --muted-font-color: #BDBDBD;
-            --user-msg-bg: linear-gradient(135deg, var(--primary-color) 0%, #4A148C 100%);
-            --bot-msg-bg: #2C2C2C;
-            --header-bg: linear-gradient(90deg, #4A148C, #00838F);
-            --border-color: #424242;
-            --input-bg: #2B2B2B;
-            --input-border: #5E35B1;
-            --send-button-color: var(--secondary-color);
-            --send-button-hover: #03A9F4;
-            --button-primary-bg: var(--primary-color);
-            --button-primary-hover: #7B1FA2;
-            --button-secondary-bg: var(--surface-color);
-            --button-secondary-border: var(--border-color);
-            --button-secondary-hover: #333;
-            /* For RGB conversion for box-shadow if needed directly in CSS */
-            --primary-color-rgb: 142, 36, 170;
-            --secondary-color-rgb: 41, 182, 246;
+            --font-primary: 'Montserrat', sans-serif; /* For headings */
+            --font-secondary: 'Poppins', sans-serif; /* For body text */
+
+            --border-radius-main: 8px; /* General border radius */
         }
 
         body {
@@ -47,758 +27,318 @@
             margin: 0;
             padding: 0;
             background-color: var(--bg-color);
-            color: var(--font-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            transition: background-color 0.3s, color 0.3s;
-            overflow-x: hidden; /* Prevent horizontal scroll on small screens */
-            position: relative;
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
-        #app-header { /* Renamed to avoid conflict with chat-header */
-            background: var(--header-bg);
-            color: white;
-            padding: 15px 25px; /* Adjusted padding */
-            text-align: center;
-            font-family: var(--font-primary);
-            font-size: 1.8em; /* Adjusted font size */
-            font-weight: 700;
-            width: 100%;
-            box-shadow: var(--shadow-elevation-low);
-            z-index: 1000; /* Ensure it's on top */
+        .container {
+            width: 90%;
+            max-width: 1000px; /* Adjusted max-width for content */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .site-header {
+            background-color: var(--bg-color); /* Header matches page background or a distinct color */
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed; /* Make header fixed */
-            top: 0;
-            left: 0;
+            width: 90%;
+            max-width: 1200px; /* Wider max-width for header content */
+            margin: 0 auto;
         }
 
-        #logo {
-            font-size: 1.1em; /* Adjusted */
-            font-weight: 600;
-            margin-right: 15px; /* Adjusted */
-            color: white;
-            text-decoration: none;
-        }
-        #logo img {
-            height: 35px; /* Adjust if using an image */
-            vertical-align: middle;
-        }
-
-        .header-controls {
+        .logo {
             display: flex;
             align-items: center;
-        }
-
-        .auth-buttons button, .settings-button {
-            background-color: transparent;
-            color: white;
-            border: 1px solid var(--secondary-color);
-            padding: 7px 14px; /* Adjusted */
-            margin-left: 8px; /* Adjusted */
-            border-radius: var(--border-radius-msg);
-            cursor: pointer;
-            font-family: var(--font-secondary);
-            font-size: 0.85em; /* Adjusted */
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.2s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-
-        .auth-buttons button:hover, .settings-button:hover {
-            background-color: var(--secondary-color);
-            color: var(--bg-color);
-            border-color: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-elevation-low);
-        }
-
-        #chat-container {
-            width: 95%;
-            max-width: 700px;
-            height: calc(100vh - 160px); /* Adjusted for fixed header and footer */
-            max-height: 700px; /* Adjusted */
-            background-color: var(--surface-color);
-            border-radius: var(--border-radius-main);
-            box-shadow: var(--shadow-elevation-medium);
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            margin-top: 80px; /* Space for fixed header */
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        #chat-header-internal { /* Renamed to distinguish from app-header */
-            background: var(--surface-color); /* Changed to surface, header bg is now on app-header */
-            color: var(--font-color);
-            padding: 12px 20px; /* Adjusted */
-            text-align: center;
             font-family: var(--font-primary);
-            font-size: 1.3em; /* Adjusted */
-            font-weight: 600; /* Adjusted */
-            display: flex;
-            justify-content: space-between; /* Space for info button */
-            align-items: center;
-            position: relative;
-            z-index: 10;
-            border-bottom: 1px solid var(--border-color);
-            border-top-left-radius: var(--border-radius-main);
-            border-top-right-radius: var(--border-radius-main);
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--text-color);
         }
 
-
-        .auraa-chat-title {
-            display: flex;
-            align-items: center;
-            font-weight: 600;
-        }
-
-        .info-button {
-            background-color: transparent;
-            color: var(--muted-font-color);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            font-size: 0.8em;
-            font-weight: bold;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.2s;
-        }
-
-        .info-button:hover {
-            background-color: var(--border-color);
-            color: var(--font-color);
-            transform: scale(1.05);
-        }
-
-        #info-modal {
-            display: none;
-            position: fixed; /* Use fixed if it should overlay everything */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: var(--surface-color);
-            color: var(--font-color);
-            border: 1px solid var(--primary-color);
-            border-radius: var(--border-radius-msg);
-            padding: 20px;
-            box-shadow: var(--shadow-elevation-high);
-            z-index: 2000; /* High z-index to be on top */
-            font-size: 0.9em;
-            max-width: 300px;
-            text-align: center;
-        }
-        #info-modal p {
-            margin-bottom: 15px;
-        }
-        #info-modal button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: var(--border-radius-msg);
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        #info-modal button:hover {
-            background-color: var(--button-primary-hover);
-        }
-
-
-        #chat-messages {
-            flex-grow: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 20px; /* Adjusted */
-        }
-
-        #chat-messages::-webkit-scrollbar {
-            width: 6px;
-        }
-        #chat-messages::-webkit-scrollbar-track {
-            background: var(--surface-color);
-            border-radius: 10px;
-        }
-        #chat-messages::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 10px;
-        }
-        #chat-messages::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary-color);
-        }
-
-        .message {
-            padding: 12px 18px;
-            border-radius: var(--border-radius-msg);
-            max-width: 80%;
-            line-height: 1.5;
-            animation: fadeInMessage 0.4s ease-out forwards;
-            position: relative;
-            box-shadow: var(--shadow-elevation-low);
-            word-wrap: break-word;
-            display: flex; /* For logo alignment */
-            align-items: flex-start; /* Align items to the top */
-        }
-
-        @keyframes fadeInMessage {
-            from { opacity: 0; transform: translateY(10px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .user-message {
-            background: var(--user-msg-bg);
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 2px;
-            margin-left: auto; /* Push to right */
-        }
-        .user-message .message-content-wrapper {
-            text-align: right;
-        }
-
-
-        .auraa-message {
-            background-color: var(--bot-msg-bg);
-            color: var(--font-color);
-            align-self: flex-start;
-            border-bottom-left-radius: 2px;
-            margin-right: auto; /* Push to left */
-        }
-
-        .auraa-logo-chat {
-            width: 28px; /* Increased size */
-            height: 28px; /* Increased size */
+        .logo svg {
             margin-right: 10px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            color: white;
-            font-size: 0.9em; /* Adjusted */
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0; /* Prevent shrinking */
-            align-self: flex-start; /* Align logo to the top of the message */
-            margin-top: 2px; /* Small top margin for alignment */
-        }
-        .user-message .auraa-logo-chat { display: none; } /* Hide for user messages */
-
-        .message-content-wrapper {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            fill: var(--text-color);
         }
 
-        .message-text {
-            word-break: break-word; /* Ensure long words break */
-        }
-
-        .message-timestamp {
-            font-size: 0.7em;
-            color: var(--muted-font-color);
-            margin-top: 6px;
-            display: block;
-            opacity: 0.8;
-            font-family: var(--font-secondary);
-            font-weight: 300;
-        }
-        .user-message .message-timestamp { text-align: right; }
-        .auraa-message .message-timestamp { text-align: left; }
-
-        #input-area {
-            display: flex;
-            padding: 10px 20px;
-            border-top: 1px solid var(--border-color);
-            background-color: var(--surface-color); /* Match chat header internal */
-            gap: 10px;
-            border-bottom-left-radius: var(--border-radius-main);
-            border-bottom-right-radius: var(--border-radius-main);
-        }
-
-        #user-input {
-            flex-grow: 1;
-            padding: 10px 15px;
-            border: 1px solid var(--input-border);
-            border-radius: 25px;
-            font-size: 0.9em;
-            background-color: var(--input-bg);
-            color: var(--font-color);
-            outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            font-family: var(--font-secondary);
-        }
-        #user-input::placeholder {
-            color: var(--muted-font-color);
-            opacity: 0.7;
-        }
-        #user-input:focus {
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 2px rgba(var(--secondary-color-rgb), 0.4);
-        }
-
-        #send-button {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border: none;
-            color: white;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: var(--shadow-elevation-low);
-            flex-shrink: 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #send-button:hover {
-            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-            transform: translateY(-1px) scale(1.05); /* Added scale */
-            box-shadow: var(--shadow-elevation-medium);
-        }
-        #send-button:active {
-            transform: translateY(0);
-            box-shadow: var(--shadow-elevation-low);
-        }
-
-        #send-button svg {
-            width: 18px;
-            height: 18px;
-            fill: white;
-            transition: fill 0.3s ease;
-            position: relative; /* For z-index if needed with animation */
-            z-index: 2;
-        }
-
-        .typing-indicator {
-            display: none; /* Hidden by default, shown by JS */
-            align-items: center;
-            justify-content: flex-start;
-            padding: 8px 20px; /* Adjusted padding */
-            color: var(--muted-font-color);
-            font-size: 0.8em;
-            gap: 5px;
-            margin-left: 48px; /* Align with auraa messages if logo is present */
-        }
-        .typing-indicator span {
-            height: 6px;
-            width: 6px;
-            background-color: var(--secondary-color);
-            border-radius: 50%;
-            display: inline-block;
-            margin: 0 2px;
-            animation: bounce 1.4s infinite ease-in-out both;
-            opacity: 0.7;
-        }
-        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
-        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); opacity: 0.7; }
-            40% { transform: scale(1.0); opacity: 1; }
-        }
-
-        .settings-dropdown {
-            position: absolute;
-            top: 55px; /* Adjust based on app-header height */
-            right: 20px;
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius-msg);
-            padding: 8px 0; /* Adjusted */
-            box-shadow: var(--shadow-elevation-medium);
-            z-index: 1001; /* Above app-header content but below modal */
-            display: none;
-            min-width: 160px; /* Adjusted */
-            font-size: 0.85em; /* Adjusted */
-        }
-
-        .settings-dropdown.open {
-            display: block;
-            animation: fadeInDropdown 0.2s ease-out;
-        }
-
-        @keyframes fadeInDropdown {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-
-        .settings-dropdown ul {
+        .main-nav ul {
             list-style: none;
             padding: 0;
             margin: 0;
+            display: flex;
         }
 
-        .settings-dropdown li a {
-            display: block;
-            padding: 8px 15px;
+        .main-nav li {
+            margin-left: 25px;
+        }
+
+        .main-nav a {
             text-decoration: none;
-            color: var(--font-color);
-            transition: background-color 0.2s ease;
+            color: var(--text-color-secondary);
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
-        .settings-dropdown li a:hover {
-            background-color: var(--bot-msg-bg);
+        .main-nav a:hover {
+            color: var(--text-color);
         }
 
-        #app-footer { /* Renamed to avoid conflict */
-            width: 100%;
-            padding: 10px 20px; /* Adjusted */
-            text-align: center;
-            color: var(--muted-font-color);
-            font-size: 0.75em; /* Adjusted */
-            background-color: var(--bg-color); /* Match body background */
-            border-top: 1px solid var(--border-color);
-            position: fixed; /* Make footer fixed */
-            bottom: 0;
-            left: 0;
-            z-index: 999;
+        .auth-buttons button {
+            background-color: transparent;
+            color: var(--button-text-color);
+            border: 1px solid var(--button-outline-color);
+            padding: 8px 18px;
+            margin-left: 15px;
+            border-radius: var(--border-radius-main);
+            cursor: pointer;
+            font-family: var(--font-secondary);
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        #app-footer a {
-            color: var(--secondary-color);
-            text-decoration: none;
+        .auth-buttons button:hover {
+            background-color: var(--button-outline-color);
+            color: var(--bg-color);
+        }
+         .auth-buttons button.signup {
+            background-color: var(--button-outline-color);
+            color: var(--bg-color);
+        }
+        .auth-buttons button.signup:hover {
+            background-color: transparent;
+            color: var(--button-text-color);
         }
 
-        #app-footer a:hover {
-            text-decoration: underline;
+
+        /* Main Content Styles */
+        .main-page-title {
+            font-family: var(--font-primary);
+            font-size: 2.2em; /* Adjusted size based on image */
+            font-weight: 600;
+            text-align: left; /* Image shows left aligned title */
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--text-color);
         }
 
-        /* Button Ripple Animation */
-        .animated-button::after, #send-button::after {
-            content: '';
-            background: rgba(255, 255, 255, 0.2);
-            display: block;
-            position: absolute;
-            border-radius: 50%;
-            padding-top: 350%;
-            padding-left: 350%;
-            margin-left: -20px !important; /* !important for specificity */
-            margin-top: -120%;
-            opacity: 0;
-            transition: all 0.8s;
-            pointer-events: none; /* Ensure it doesn't block clicks */
+        .intro-text p {
+            font-size: 0.95em;
+            color: var(--text-color-secondary);
+            margin-bottom: 15px;
+            max-width: 80ch; /* Limit line length for readability */
         }
 
-        .animated-button:active::after, #send-button:active::after {
-            padding-top: 0;
-            padding-left: 0;
-            margin-left: 0;
+        .content-box {
+            background-color: var(--bg-color); /* Or var(--container-bg-color) if a distinct box is desired */
+            /* border: 1px solid var(--border-color); remove border for seamless look with sections */
+            border-radius: var(--border-radius-main);
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .content-section {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .content-section h3 {
+            font-family: var(--font-primary);
+            font-size: 1.3em;
+            font-weight: 500;
+            color: var(--text-color);
             margin-top: 0;
-            opacity: 1;
-            transition: 0s;
+            margin-bottom: 15px;
+        }
+        .content-section h4 {
+            font-family: var(--font-primary);
+            font-size: 1.1em;
+            font-weight: 500;
+            color: var(--text-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
 
+        .content-section p {
+            font-size: 0.9em;
+            color: var(--text-color-secondary);
+            margin-bottom: 10px;
+        }
+        .content-section ul {
+            padding-left: 20px;
+            color: var(--text-color-secondary);
+        }
+        .content-section li {
+            margin-bottom: 8px;
+        }
 
-        @media (max-width: 768px) { /* Adjusted breakpoint */
-            #app-header {
-                font-size: 1.5em;
-                padding: 12px 15px;
+        /* Floating AI Button */
+        .floating-ai-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #7B1FA2; /* Example color, adjust as needed */
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-primary);
+            font-size: 1.3em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
             }
-            #logo { font-size: 1em; }
-            .auth-buttons button, .settings-button {
-                padding: 6px 10px;
-                margin-left: 5px;
-                font-size: 0.75em;
-            }
-             #chat-container {
+            .main-nav {
+                margin-top: 15px;
                 width: 100%;
-                height: calc(100vh - 125px); /* Header + Footer height for mobile */
-                margin-top: 65px; /* Approx header height */
-                border-radius: 0;
             }
-            #chat-header-internal {
-                padding: 10px 15px;
+            .main-nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .main-nav li {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+            .auth-buttons {
+                margin-top: 15px;
+                width: 100%;
+            }
+            .auth-buttons button {
+                margin-left: 0;
+                margin-right: 10px;
+                display: block;
+                width: calc(50% - 5px); /* Adjust for two buttons side-by-side */
+                margin-bottom: 10px;
+            }
+            .auth-buttons button:last-child{
+                margin-right: 0;
+            }
+
+            .main-page-title {
+                font-size: 1.8em;
+            }
+            .content-box {
+                padding: 20px;
+            }
+            .floating-ai-button {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
                 font-size: 1.1em;
-                border-radius: 0;
-            }
-            .auraa-chat-title img { height: 20px; margin-right: 8px;}
-             #chat-messages {
-                padding: 15px 10px; /* Less horizontal padding */
-            }
-            .message {
-                max-width: 90%;
-                padding: 10px 12px;
-                font-size: 0.85em;
-            }
-            .auraa-logo-chat {
-                width: 24px;
-                height: 24px;
-                font-size: 0.8em;
-                margin-right: 8px;
-            }
-            #input-area {
-                padding: 8px 10px; /* Tighter padding */
-                border-radius: 0;
-            }
-            #user-input {
-                padding: 8px 12px;
-                font-size: 0.85em;
-                border-radius: 20px;
-            }
-            #send-button {
-                width: 36px; /* Slightly smaller */
-                height: 36px;
-            }
-            #send-button svg {
-                width: 16px;
-                height: 16px;
-            }
-            .typing-indicator {
-                padding: 6px 15px;
-                font-size: 0.75em;
-                margin-left: 40px; /* Adjust if logo size changes */
-            }
-            #app-footer {
-                padding: 8px 15px;
-                font-size: 0.7em;
-            }
-            .settings-dropdown {
-                top: 50px; /* Adjust for mobile header */
-                right: 10px;
-                font-size: 0.8em;
-                min-width: 130px;
-            }
-            .settings-dropdown li a {
-                padding: 7px 12px;
-            }
-            .info-button {
-                width: 24px;
-                height: 24px;
-                font-size: 0.7em;
-            }
-            #info-modal {
-                padding: 15px;
-                font-size: 0.85em;
-                width: 80%;
             }
         }
+         @media (max-width: 480px) {
+            .auth-buttons button {
+                width: 100%;
+                margin-right: 0;
+            }
+         }
+
     </style>
 </head>
 <body>
-    <header id="app-header">
-        <a href="#" id="logo">AURAA</a> <div class="header-controls">
-            <div class="auth-buttons">
-                <button class="animated-button" id="signup-btn">Sign Up</button>
-                <button class="animated-button" id="signin-btn">Sign In</button>
-            </div>
-            <button class="settings-button animated-button" id="settings-trigger-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311a1.464 1.464 0 0 1-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413-1.4-2.397 0-2.81l.34-.1a1.464 1.464 0 0 1 .872-2.105l-.17-.31c-.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.858 2.929 2.929 0 0 1 0 5.858z"/>
+    <header class="site-header">
+        <div class="header-content">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 5 L95 90 L5 90 Z" stroke="var(--text-color)" stroke-width="8" fill="transparent"/>
+                    <text x="50" y="72" font-family="var(--font-primary), Arial, sans-serif" font-size="45" fill="var(--text-color)" text-anchor="middle" font-weight="bold">A</text>
                 </svg>
-            </button>
+                </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button>Login</button>
+                <button class="signup">Sign Up</button>
+            </div>
         </div>
     </header>
 
-    <div class="settings-dropdown" id="settings-menu">
-        <ul>
-            <li><a href="#" id="setting-theme">Theme: Dark</a></li>
-            <li><a href="#" id="setting-lang">Language: English</a></li>
-            <li><a href="#" id="setting-notify">Notifications: On</a></li>
-            <li><hr style="border-color: var(--border-color); margin: 5px 0;"></li>
-            <li><a href="#" id="setting-profile">Your Profile</a></li>
-            <li><a href="#" id="setting-signout">Sign Out</a></li>
-        </ul>
-    </div>
+    <main class="container">
+        <h1 class="main-page-title">PRIVACY POLICY OF OUR COMPANY</h1>
+        <section class="intro-text">
+            <p>This text is a placeholder. Replace it with your actual introductory content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Please read this policy carefully to understand our policies and practices regarding your information and how we will treat it.</p>
+        </section>
 
-    <div id="chat-container" class="theme-aura">
-        <div id="chat-header-internal">
-            <div class="auraa-chat-title">AURAA</div>
-            <button class="info-button" id="info-trigger-btn">i</button>
+        <div class="content-box">
+            <section class="content-section">
+                <h3>Overview of Information</h3>
+                <p>This section provides a general overview of the types of information we collect and why. Placeholder text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisi vel consectetur interdum, nisl nunc egestas nunc, vitae tincidunt nisl nunc euismod nunc.</p>
+            </section>
+
+            <section class="content-section">
+                <h3>Collection of Information</h3>
+                <p>Detailed information about what data is collected. Placeholder text: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <h4>Data We Collect Automatically</h4>
+                <p>Information about usage, logs, device information etc. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.</p>
+                <h4>Information You Provide to Us</h4>
+                <p>Account details, payment information, communications. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
+            </section>
+
+            <section class="content-section">
+                <h3>Third Party and Affiliates</h3>
+                <p>How information is shared with third parties and affiliates. Placeholder text: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+                 <ul>
+                    <li>Service Providers</li>
+                    <li>Business Partners</li>
+                    <li>Legal Requirements</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h3>Disclaimer</h3>
+                <p>Important disclaimers regarding the use of our service and data. Placeholder text: Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.</p>
+            </section>
+
+            <section class="content-section">
+                <h3>Future Updates</h3>
+                <p>Information about how policy updates will be communicated. Placeholder text: Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada.</p>
+            </section>
         </div>
-        <div id="chat-messages">
-            </div>
-        <div id="input-area">
-            <input type="text" id="user-input" placeholder="Ask AURAA anything...">
-            <button id="send-button" title="Send">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"/></svg>
-            </button>
-        </div>
-    </div>
+    </main>
 
-    <div id="info-modal">
-        <p><strong>AURAA Information</strong></p>
-        <p>AURAA's frontend has been designed and made by Sarnab.</p>
-        <p>The backend is powered by the API of Google AI model Gemini.</p>
-        <button id="close-info-modal-btn">Close</button>
+    <div class="floating-ai-button">
+        AI
     </div>
-
-    <footer id="app-footer">
-        <p>&copy; <span id="current-year"></span> AURAA AI. All rights reserved. | <a href="#terms" id="terms-link">Terms & Conditions</a></p>
-    </footer>
 
     <script>
-        const chatMessages = document.getElementById('chat-messages');
-        const userInputField = document.getElementById('user-input');
-        const sendButton = document.getElementById('send-button');
-        
-        const infoTriggerBtn = document.getElementById('info-trigger-btn');
-        const infoModal = document.getElementById('info-modal');
-        const closeInfoModalBtn = document.getElementById('close-info-modal-btn');
-
-        const settingsTriggerBtn = document.getElementById('settings-trigger-btn');
-        const settingsMenu = document.getElementById('settings-menu');
-
-        // Typing Indicator Element (created once)
-        const typingIndicator = document.createElement('div');
-        typingIndicator.classList.add('typing-indicator');
-        typingIndicator.innerHTML = '<span></span><span></span><span></span>';
-        // Prepend it to chatMessages but keep it hidden initially
-        chatMessages.prepend(typingIndicator);
-
-
-        function addMessage(text, sender) {
-            const messageWrapper = document.createElement('div');
-            messageWrapper.classList.add('message', `${sender}-message`);
-
-            const logoHTML = sender === 'auraa' ? '<div class="auraa-logo-chat">[A]</div>' : '';
-            
-            messageWrapper.innerHTML = `
-                ${logoHTML}
-                <div class="message-content-wrapper">
-                    <div class="message-text">${text.replace(/\n/g, '<br>')}</div>
-                    <div class="message-timestamp">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
-                </div>
-            `;
-            
-            // Insert message before the typing indicator
-            chatMessages.insertBefore(messageWrapper, typingIndicator);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function showTyping() { 
-            typingIndicator.style.display = 'flex'; 
-            chatMessages.scrollTop = chatMessages.scrollHeight; 
-        }
-        function hideTyping() { 
-            typingIndicator.style.display = 'none'; 
-        }
-        
-        async function getAuraaResponse(userInput) {
-            const backendUrl = 'https://auraa-sb-2007.onrender.com/ask-auraa'; 
-            // This is a placeholder. Replace with your actual backend endpoint.
-            // If you don't have a backend yet, you can simulate a response:
-            // return new Promise(resolve => setTimeout(() => resolve(`AURAA echoes: ${userInput}`), 1000));
-
-            try {
-                const response = await fetch(backendUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ prompt: userInput })
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json().catch(() => ({ response: "Server returned an invalid JSON."})); // Catch JSON parse error
-                    console.error("Server Error Data:", errorData);
-                    return `Error from server: ${errorData.response || response.statusText || 'Could not connect properly.'}`;
-                }
-
-                const data = await response.json();
-                return data.response || "Received an empty response from AURAA.";
-
-            } catch (error) {
-                console.error("Connection Error:", error);
-                return "I'm having trouble connecting. Please check the backend or try again later.";
-            }
-        }
-
-        async function handleUserInput() {
-            const userInput = userInputField.value.trim();
-            if (userInput === "") return;
-            addMessage(userInput, 'user');
-            userInputField.value = "";
-            userInputField.focus(); // Keep focus on input
-            showTyping();
-            try {
-                const auraaResponse = await getAuraaResponse(userInput);
-                addMessage(auraaResponse, 'auraa');
-            } catch (e) { // Catch any unexpected error from getAuraaResponse itself
-                addMessage("An unexpected error occurred while fetching the response.", 'auraa');
-            } finally {
-                hideTyping();
-            }
-        }
-
-        sendButton.addEventListener('click', handleUserInput);
-        userInputField.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) { // Send on Enter, allow Shift+Enter for newline
-                e.preventDefault(); // Prevent default newline in input
-                handleUserInput();
-            }
-        });
-
-        // Info Modal Logic
-        infoTriggerBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            infoModal.style.display = 'block';
-        });
-        closeInfoModalBtn.addEventListener('click', () => {
-            infoModal.style.display = 'none';
-        });
-        
-        // Settings Menu Logic
-        settingsTriggerBtn.addEventListener('click', (event) => {
-            event.stopPropagation(); 
-            settingsMenu.classList.toggle('open');
-            infoModal.style.display = 'none'; // Close info modal if open
-        });
-
-        // Close modals/dropdowns when clicking outside
-        document.addEventListener('click', (event) => {
-            if (infoModal.style.display === 'block' && !infoModal.contains(event.target) && !infoTriggerBtn.contains(event.target)) {
-                infoModal.style.display = 'none';
-            }
-            if (settingsMenu.classList.contains('open') && !settingsMenu.contains(event.target) && !settingsTriggerBtn.contains(event.target)) {
-                settingsMenu.classList.remove('open');
-            }
-        });
-        
-        // Update current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Placeholder for Terms link
-        document.getElementById('terms-link').addEventListener('click', (e) => {
-            e.preventDefault();
-            alert("Terms & Conditions section to be implemented.");
-            // You would typically navigate to a terms page or show a modal
-        });
-
-        // Placeholder for Auth buttons
-        document.getElementById('signup-btn').addEventListener('click', () => alert('Sign Up functionality to be implemented.'));
-        document.getElementById('signin-btn').addEventListener('click', () => alert('Sign In functionality to be implemented.'));
-
-        // Placeholder for Settings options
-        document.getElementById('setting-theme').addEventListener('click', (e) => {e.preventDefault(); alert('Theme settings to be implemented.')});
-        document.getElementById('setting-lang').addEventListener('click', (e) => {e.preventDefault(); alert('Language settings to be implemented.')});
-        document.getElementById('setting-notify').addEventListener('click', (e) => {e.preventDefault(); alert('Notification settings to be implemented.')});
-        document.getElementById('setting-profile').addEventListener('click', (e) => {e.preventDefault(); alert('Profile page/settings to be implemented.')});
-        document.getElementById('setting-signout').addEventListener('click', (e) => {e.preventDefault(); alert('Sign out functionality to be implemented.')});
-
-
-        // Initial welcome message
-        window.onload = () => {
-            userInputField.focus();
-            setTimeout(() => {
-                addMessage("Hi, I'm AURAA. How can I assist you today?", 'auraa');
-            }, 500);
-        };
+        // Any new JavaScript specific to this interface can be added here.
+        // For now, it's a static page as per the image.
+        console.log("Page loaded. UI is static based on the image provided.");
     </script>
 </body>
 </html>
