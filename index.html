@@ -23,7 +23,7 @@
             --glow-secondary: 0 0 20px rgba(0, 188, 212, 0.3);
         }
 
-        
+        /* Dark Theme (Default) */
         .theme-dark {
             --primary-color: #7B1FA2;
             --secondary-color: #00BCD4;
@@ -59,7 +59,8 @@
             --premium-glow: 0 0 30px rgba(186, 104, 200, 0.4), 0 0 60px rgba(123, 31, 162, 0.2);
         }
 
-                .theme-light {
+        /* Light Theme */
+        .theme-light {
             --primary-color: #7B1FA2;
             --secondary-color: #00BCD4;
             --accent-color: #E91E63;
@@ -133,7 +134,7 @@
             50% { opacity: 0.6; }
         }
 
-        
+        /* Floating particles animation */
         body::after {
             content: '';
             position: fixed;
@@ -159,7 +160,7 @@
             100% { transform: translateY(-100px); }
         }
 
-        
+        /* Navigation Header */
         .nav-header {
             background: var(--header-bg);
             backdrop-filter: blur(20px);
@@ -319,7 +320,8 @@
             display: none;
         }
 
-                .main-container {
+        /* Main Chat Container */
+        .main-container {
             flex: 1;
             display: flex;
             justify-content: center;
@@ -488,7 +490,7 @@
             --glow-secondary: 0 0 20px rgba(0, 188, 212, 0.3);
         }
 
-        
+        /* Dark Theme (Default) */
         .theme-dark {
             --primary-color: #7B1FA2;
             --secondary-color: #00BCD4;
@@ -524,7 +526,8 @@
             --premium-glow: 0 0 30px rgba(186, 104, 200, 0.4), 0 0 60px rgba(123, 31, 162, 0.2);
         }
 
-                .theme-light {
+        /* Light Theme */
+        .theme-light {
             --primary-color: #7B1FA2;
             --secondary-color: #00BCD4;
             --accent-color: #E91E63;
@@ -598,7 +601,7 @@
             50% { opacity: 0.6; }
         }
 
-        
+        /* Floating particles animation */
         body::after {
             content: '';
             position: fixed;
@@ -624,7 +627,8 @@
             100% { transform: translateY(-100px); }
         }
 
-                .nav-header {
+        /* Navigation Header */
+        .nav-header {
             background: var(--header-bg);
             backdrop-filter: blur(20px);
             color: white;
@@ -783,7 +787,7 @@
             display: none;
         }
 
-        
+        /* Main Chat Container */
         .main-container {
             flex: 1;
             display: flex;
@@ -1059,7 +1063,7 @@
             40% { transform: scale(1.0); opacity: 1; }
         }
 
-        
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -1238,7 +1242,7 @@
             transform: translateX(26px);
         }
 
-        
+        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-controls {
                 gap: 10px;
@@ -1324,7 +1328,7 @@
             }
         }
 
-        
+        /* Accessibility */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -1333,7 +1337,8 @@
             }
         }
 
-                .nav-btn:focus,
+        /* Focus indicators */
+        .nav-btn:focus,
         .btn:focus,
         #user-input:focus,
         #send-button:focus {
@@ -1343,7 +1348,7 @@
     </style>
 </head>
 <body class="theme-dark">
-    
+    <!-- Navigation Header -->
     <nav class="nav-header">
         <div class="nav-brand">
             <div class="auraa-icon"></div>
@@ -1373,7 +1378,8 @@
         </div>
     </nav>
 
-        <div class="main-container">
+    <!-- Main Chat Container -->
+    <div class="main-container">
         <div id="chat-container">
             <div id="chat-messages">
                 <div class="typing-indicator">
@@ -1391,7 +1397,8 @@
         </div>
     </div>
 
-        <div id="info-modal" class="modal">
+    <!-- Info Modal -->
+    <div id="info-modal" class="modal">
         <div class="modal-content">
             <span class="close" id="info-close">&times;</span>
             <h2>About AURAA</h2>
@@ -1411,7 +1418,7 @@
         </div>
     </div>
 
-    
+    <!-- Auth Modal -->
     <div id="auth-modal" class="modal">
         <div class="modal-content">
             <span class="close" id="auth-close">&times;</span>
@@ -1435,7 +1442,8 @@
         </div>
     </div>
 
-        <div id="settings-modal" class="modal">
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
         <div class="modal-content">
             <span class="close" id="settings-close">&times;</span>
             <h2>Settings</h2>
@@ -1480,7 +1488,8 @@
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
 
-                const infoModal = document.getElementById('info-modal');
+        // Modal elements
+        const infoModal = document.getElementById('info-modal');
         const authModal = document.getElementById('auth-modal');
         const settingsModal = document.getElementById('settings-modal');
         
@@ -1492,14 +1501,15 @@
         const authClose = document.getElementById('auth-close');
         const settingsClose = document.getElementById('settings-close');
 
-        
+        // Auth form elements
         const authForm = document.getElementById('auth-form');
         const authTitle = document.getElementById('auth-title');
         const authSubmit = document.getElementById('auth-submit');
         const authToggle = document.getElementById('auth-toggle');
         const confirmPasswordGroup = document.getElementById('confirm-password-group');
 
-                const themeSwitch = document.getElementById('theme-switch');
+        // Settings elements
+        const themeSwitch = document.getElementById('theme-switch');
         const notificationsSwitch = document.getElementById('notifications-switch');
         const soundSwitch = document.getElementById('sound-switch');
 
@@ -1568,7 +1578,7 @@
             addMessage(auraaResponse, 'auraa');
         }
 
-        
+        // Theme toggle functionality
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('theme-light');
             body.classList.toggle('theme-dark');
@@ -1585,7 +1595,8 @@
             }
         });
 
-                infoBtn.addEventListener('click', () => infoModal.style.display = 'block');
+        // Modal functionality
+        infoBtn.addEventListener('click', () => infoModal.style.display = 'block');
         authBtn.addEventListener('click', () => authModal.style.display = 'block');
         settingsBtn.addEventListener('click', () => settingsModal.style.display = 'block');
 
@@ -1593,13 +1604,14 @@
         authClose.addEventListener('click', () => authModal.style.display = 'none');
         settingsClose.addEventListener('click', () => settingsModal.style.display = 'none');
 
-                window.addEventListener('click', (e) => {
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
             if (e.target === infoModal) infoModal.style.display = 'none';
             if (e.target === authModal) authModal.style.display = 'none';
             if (e.target === settingsModal) settingsModal.style.display = 'none';
         });
 
-        
+        // Auth form toggle
         authToggle.addEventListener('click', () => {
             isSignUp = !isSignUp;
             if (isSignUp) {
@@ -1615,7 +1627,7 @@
             }
         });
 
-        
+        // Auth form submission
         authForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;
@@ -1763,7 +1775,8 @@
             40% { transform: scale(1.0); opacity: 1; }
         }
 
-                .modal {
+        /* Modal Styles */
+        .modal {
             display: none;
             position: fixed;
             z-index: 2000;
@@ -1941,7 +1954,8 @@
             transform: translateX(26px);
         }
 
-          @media (max-width: 768px) {
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .nav-controls {
                 gap: 10px;
             }
@@ -2026,7 +2040,7 @@
             }
         }
 
-     
+        /* Accessibility */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -2035,7 +2049,8 @@
             }
         }
 
-             .nav-btn:focus,
+        /* Focus indicators */
+        .nav-btn:focus,
         .btn:focus,
         #user-input:focus,
         #send-button:focus {
@@ -2075,7 +2090,8 @@
         </div>
     </nav>
 
-        <div class="main-container">
+    <!-- Main Chat Container -->
+    <div class="main-container">
         <div id="chat-container">
             <div id="chat-messages">
                 <div class="typing-indicator">
@@ -2093,11 +2109,7 @@
         </div>
     </div>
 
-
-
-              
-
-    
+    <!-- Info Modal -->
     <div id="info-modal" class="modal">
         <div class="modal-content">
             <span class="close" id="info-close">&times;</span>
@@ -2118,11 +2130,7 @@
         </div>
     </div>
 
-
-
-
-
-              
+    <!-- Auth Modal -->
     <div id="auth-modal" class="modal">
         <div class="modal-content">
             <span class="close" id="auth-close">&times;</span>
@@ -2140,7 +2148,8 @@
         </div>
     </div>
 
-        <div id="settings-modal" class="modal">
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
         <div class="modal-content">
             <span class="close" id="settings-close">&times;</span>
             <h2>Settings</h2>
@@ -2183,14 +2192,14 @@
         const sendButton = document.getElementById('send-button');
         const typingIndicator = document.querySelector('.typing-indicator');
 
-        
+        // Modal functionality
         const modals = {
             info: { modal: document.getElementById('info-modal'), btn: document.getElementById('info-btn'), close: document.getElementById('info-close') },
             auth: { modal: document.getElementById('auth-modal'), btn: document.getElementById('auth-btn'), close: document.getElementById('auth-close') },
             settings: { modal: document.getElementById('settings-modal'), btn: document.getElementById('settings-btn'), close: document.getElementById('settings-close') }
         };
 
-        
+        // Theme toggle functionality
         const themeToggle = document.getElementById('theme-toggle');
         const themeSwitch = document.getElementById('theme-switch');
         const body = document.body;
@@ -2207,13 +2216,13 @@
             themeSwitch.addEventListener('change', toggleTheme);
         }
 
-        
+        // Modal event listeners
         Object.entries(modals).forEach(([key, modal]) => {
             modal.btn.addEventListener('click', () => modal.modal.style.display = 'block');
             modal.close.addEventListener('click', () => modal.modal.style.display = 'none');
         });
 
-        
+        // Close modals when clicking outside
         window.addEventListener('click', (event) => {
             Object.values(modals).forEach(modal => {
                 if (event.target === modal.modal) {
@@ -2290,6 +2299,7 @@
             if (e.key === 'Enter') handleUserInput();
         });
 
+        // Initialize app
         window.onload = () => {
             userInputField.focus();
             setTimeout(() => {
