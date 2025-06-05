@@ -9,32 +9,37 @@
         :root {
             --font-primary: 'Montserrat', sans-serif;
             --font-secondary: 'Poppins', sans-serif;
-            --border-radius-main: 25px;
-            --border-radius-msg: 18px;
-            --shadow-elevation-low: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-elevation-medium: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-elevation-high: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --border-radius-main: 12px;
+            --border-radius-msg: 8px;
+            --shadow-elevation-low: 0 2px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.16);
+            --shadow-elevation-medium: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.24);
+            --shadow-elevation-high: 0 8px 16px rgba(0, 0, 0, 0.16), 0 4px 8px rgba(0, 0, 0, 0.32);
         }
 
-       
         .theme-aura {
-            --primary-color: #7B1FA2; 
-            --secondary-color: #00BCD4; 
-            --accent-glow: #BA68C8; 
-            --bg-color: #0d0d0d; 
-            --surface-color: #1a1a1a; 
-            --font-color: #e0e0e0; 
-            --muted-font-color: #9e9e9e; 
-            
-            --user-msg-bg: linear-gradient(135deg, var(--primary-color) 0%, #4a148c 100%); 
-            --bot-msg-bg: #2b2b2b; 
-            --header-bg: linear-gradient(90deg, #42006e, #005663); 
-            
-            --border-color: #333; 
-            --input-bg: #222;
-            --input-border: #444;
+            --primary-color: #8E24AA;
+            --secondary-color: #29B6F6;
+            --accent-glow: #CE93D8;
+            --bg-color: #121212;
+            --surface-color: #1E1E1E;
+            --font-color: #F5F5F5;
+            --muted-font-color: #BDBDBD;
+            --user-msg-bg: linear-gradient(135deg, var(--primary-color) 0%, #4A148C 100%);
+            --bot-msg-bg: #2C2C2C;
+            --header-bg: linear-gradient(90deg, #4A148C, #00838F);
+            --border-color: #424242;
+            --input-bg: #2B2B2B;
+            --input-border: #5E35B1;
             --send-button-color: var(--secondary-color);
-            --send-button-hover: var(--primary-color);
+            --send-button-hover: #03A9F4;
+            --button-primary-bg: var(--primary-color);
+            --button-primary-hover: #7B1FA2;
+            --button-secondary-bg: var(--surface-color);
+            --button-secondary-border: var(--border-color);
+            --button-secondary-hover: #333;
+            /* For RGB conversion for box-shadow if needed directly in CSS */
+            --primary-color-rgb: 142, 36, 170;
+            --secondary-color-rgb: 41, 182, 246;
         }
 
         body {
@@ -44,58 +49,171 @@
             background-color: var(--bg-color);
             color: var(--font-color);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
             transition: background-color 0.3s, color 0.3s;
-            overflow: hidden; 
+            overflow-x: hidden; /* Prevent horizontal scroll on small screens */
+            position: relative;
+        }
+
+        #app-header { /* Renamed to avoid conflict with chat-header */
+            background: var(--header-bg);
+            color: white;
+            padding: 15px 25px; /* Adjusted padding */
+            text-align: center;
+            font-family: var(--font-primary);
+            font-size: 1.8em; /* Adjusted font size */
+            font-weight: 700;
+            width: 100%;
+            box-shadow: var(--shadow-elevation-low);
+            z-index: 1000; /* Ensure it's on top */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed; /* Make header fixed */
+            top: 0;
+            left: 0;
+        }
+
+        #logo {
+            font-size: 1.1em; /* Adjusted */
+            font-weight: 600;
+            margin-right: 15px; /* Adjusted */
+            color: white;
+            text-decoration: none;
+        }
+        #logo img {
+            height: 35px; /* Adjust if using an image */
+            vertical-align: middle;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .auth-buttons button, .settings-button {
+            background-color: transparent;
+            color: white;
+            border: 1px solid var(--secondary-color);
+            padding: 7px 14px; /* Adjusted */
+            margin-left: 8px; /* Adjusted */
+            border-radius: var(--border-radius-msg);
+            cursor: pointer;
+            font-family: var(--font-secondary);
+            font-size: 0.85em; /* Adjusted */
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .auth-buttons button:hover, .settings-button:hover {
+            background-color: var(--secondary-color);
+            color: var(--bg-color);
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-elevation-low);
         }
 
         #chat-container {
             width: 95%;
-            max-width: 700px; 
-            height: 90vh;
-            max-height: 800px;
+            max-width: 700px;
+            height: calc(100vh - 160px); /* Adjusted for fixed header and footer */
+            max-height: 700px; /* Adjusted */
             background-color: var(--surface-color);
             border-radius: var(--border-radius-main);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.05); 
+            box-shadow: var(--shadow-elevation-medium);
             border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            position: relative; 
+            margin-top: 80px; /* Space for fixed header */
+            margin-bottom: 20px;
+            position: relative;
         }
 
-        #chat-header {
-            background: var(--header-bg);
-            color: white;
-            padding: 20px 25px;
+        #chat-header-internal { /* Renamed to distinguish from app-header */
+            background: var(--surface-color); /* Changed to surface, header bg is now on app-header */
+            color: var(--font-color);
+            padding: 12px 20px; /* Adjusted */
             text-align: center;
             font-family: var(--font-primary);
-            font-size: 1.8em;
-            font-weight: 700;
+            font-size: 1.3em; /* Adjusted */
+            font-weight: 600; /* Adjusted */
             display: flex;
-            justify-content: center;
+            justify-content: space-between; /* Space for info button */
             align-items: center;
             position: relative;
             z-index: 10;
-            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
             border-top-left-radius: var(--border-radius-main);
             border-top-right-radius: var(--border-radius-main);
         }
 
-        #chat-header::before { 
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 60%);
-            opacity: 0.3;
-            filter: blur(20px);
-            z-index: -1;
+
+        .auraa-chat-title {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
         }
+
+        .info-button {
+            background-color: transparent;
+            color: var(--muted-font-color);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.8em;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.2s;
+        }
+
+        .info-button:hover {
+            background-color: var(--border-color);
+            color: var(--font-color);
+            transform: scale(1.05);
+        }
+
+        #info-modal {
+            display: none;
+            position: fixed; /* Use fixed if it should overlay everything */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--surface-color);
+            color: var(--font-color);
+            border: 1px solid var(--primary-color);
+            border-radius: var(--border-radius-msg);
+            padding: 20px;
+            box-shadow: var(--shadow-elevation-high);
+            z-index: 2000; /* High z-index to be on top */
+            font-size: 0.9em;
+            max-width: 300px;
+            text-align: center;
+        }
+        #info-modal p {
+            margin-bottom: 15px;
+        }
+        #info-modal button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: var(--border-radius-msg);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #info-modal button:hover {
+            background-color: var(--button-primary-hover);
+        }
+
 
         #chat-messages {
             flex-grow: 1;
@@ -104,13 +222,12 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            -webkit-overflow-scrolling: touch; 
-            padding-bottom: 30px; 
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 20px; /* Adjusted */
         }
-        
-      
+
         #chat-messages::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         #chat-messages::-webkit-scrollbar-track {
             background: var(--surface-color);
@@ -119,25 +236,26 @@
         #chat-messages::-webkit-scrollbar-thumb {
             background: var(--primary-color);
             border-radius: 10px;
-            border: 2px solid var(--surface-color);
         }
         #chat-messages::-webkit-scrollbar-thumb:hover {
             background: var(--secondary-color);
         }
 
         .message {
-            padding: 14px 20px;
+            padding: 12px 18px;
             border-radius: var(--border-radius-msg);
-            max-width: 85%; 
-            line-height: 1.6;
-            animation: fadeInMessage 0.6s ease-out forwards;
+            max-width: 80%;
+            line-height: 1.5;
+            animation: fadeInMessage 0.4s ease-out forwards;
             position: relative;
             box-shadow: var(--shadow-elevation-low);
-            word-wrap: break-word; 
+            word-wrap: break-word;
+            display: flex; /* For logo alignment */
+            align-items: flex-start; /* Align items to the top */
         }
 
         @keyframes fadeInMessage {
-            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            from { opacity: 0; transform: translateY(10px) scale(0.98); }
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
@@ -145,22 +263,55 @@
             background: var(--user-msg-bg);
             color: white;
             align-self: flex-end;
-            border-bottom-right-radius: 5px; 
+            border-bottom-right-radius: 2px;
+            margin-left: auto; /* Push to right */
+        }
+        .user-message .message-content-wrapper {
             text-align: right;
         }
+
 
         .auraa-message {
             background-color: var(--bot-msg-bg);
             color: var(--font-color);
             align-self: flex-start;
-            border-bottom-left-radius: 5px; 
+            border-bottom-left-radius: 2px;
+            margin-right: auto; /* Push to left */
+        }
+
+        .auraa-logo-chat {
+            width: 28px; /* Increased size */
+            height: 28px; /* Increased size */
+            margin-right: 10px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.9em; /* Adjusted */
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0; /* Prevent shrinking */
+            align-self: flex-start; /* Align logo to the top of the message */
+            margin-top: 2px; /* Small top margin for alignment */
+        }
+        .user-message .auraa-logo-chat { display: none; } /* Hide for user messages */
+
+        .message-content-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message-text {
+            word-break: break-word; /* Ensure long words break */
         }
 
         .message-timestamp {
-            font-size: 0.75em;
+            font-size: 0.7em;
             color: var(--muted-font-color);
-            margin-top: 8px;
-            display: block; 
+            margin-top: 6px;
+            display: block;
             opacity: 0.8;
             font-family: var(--font-secondary);
             font-weight: 300;
@@ -170,18 +321,20 @@
 
         #input-area {
             display: flex;
-            padding: 15px 20px;
+            padding: 10px 20px;
             border-top: 1px solid var(--border-color);
-            background-color: var(--surface-color);
+            background-color: var(--surface-color); /* Match chat header internal */
             gap: 10px;
+            border-bottom-left-radius: var(--border-radius-main);
+            border-bottom-right-radius: var(--border-radius-main);
         }
 
         #user-input {
             flex-grow: 1;
-            padding: 12px 20px;
+            padding: 10px 15px;
             border: 1px solid var(--input-border);
-            border-radius: 30px; 
-            font-size: 1em;
+            border-radius: 25px;
+            font-size: 0.9em;
             background-color: var(--input-bg);
             color: var(--font-color);
             outline: none;
@@ -193,8 +346,8 @@
             opacity: 0.7;
         }
         #user-input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb, 123, 31, 162), 0.3); 
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(var(--secondary-color-rgb), 0.4);
         }
 
         #send-button {
@@ -202,49 +355,51 @@
             border: none;
             color: white;
             cursor: pointer;
-            width: 48px; 
-            height: 48px;
-            border-radius: 50%; 
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             box-shadow: var(--shadow-elevation-low);
-            flex-shrink: 0; 
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
         }
+
         #send-button:hover {
             background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-            transform: translateY(-2px); 
+            transform: translateY(-1px) scale(1.05); /* Added scale */
             box-shadow: var(--shadow-elevation-medium);
         }
         #send-button:active {
-            transform: translateY(0); 
+            transform: translateY(0);
             box-shadow: var(--shadow-elevation-low);
         }
 
         #send-button svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             fill: white;
             transition: fill 0.3s ease;
-        }
-        #send-button:hover svg {
-            fill: #e0e0e0;
+            position: relative; /* For z-index if needed with animation */
+            z-index: 2;
         }
 
         .typing-indicator {
-            display: none;
+            display: none; /* Hidden by default, shown by JS */
             align-items: center;
-            justify-content: flex-start; 
-            padding: 10px 20px;
+            justify-content: flex-start;
+            padding: 8px 20px; /* Adjusted padding */
             color: var(--muted-font-color);
-            font-size: 0.9em;
+            font-size: 0.8em;
             gap: 5px;
-            margin-top: -10px; 
+            margin-left: 48px; /* Align with auraa messages if logo is present */
         }
         .typing-indicator span {
-            height: 8px;
-            width: 8px;
+            height: 6px;
+            width: 6px;
             background-color: var(--secondary-color);
             border-radius: 50%;
             display: inline-block;
@@ -259,45 +414,217 @@
             40% { transform: scale(1.0); opacity: 1; }
         }
 
-    
-        @media (max-width: 600px) {
-            #chat-container {
+        .settings-dropdown {
+            position: absolute;
+            top: 55px; /* Adjust based on app-header height */
+            right: 20px;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-msg);
+            padding: 8px 0; /* Adjusted */
+            box-shadow: var(--shadow-elevation-medium);
+            z-index: 1001; /* Above app-header content but below modal */
+            display: none;
+            min-width: 160px; /* Adjusted */
+            font-size: 0.85em; /* Adjusted */
+        }
+
+        .settings-dropdown.open {
+            display: block;
+            animation: fadeInDropdown 0.2s ease-out;
+        }
+
+        @keyframes fadeInDropdown {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        .settings-dropdown ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .settings-dropdown li a {
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: var(--font-color);
+            transition: background-color 0.2s ease;
+        }
+
+        .settings-dropdown li a:hover {
+            background-color: var(--bot-msg-bg);
+        }
+
+        #app-footer { /* Renamed to avoid conflict */
+            width: 100%;
+            padding: 10px 20px; /* Adjusted */
+            text-align: center;
+            color: var(--muted-font-color);
+            font-size: 0.75em; /* Adjusted */
+            background-color: var(--bg-color); /* Match body background */
+            border-top: 1px solid var(--border-color);
+            position: fixed; /* Make footer fixed */
+            bottom: 0;
+            left: 0;
+            z-index: 999;
+        }
+
+        #app-footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        #app-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button Ripple Animation */
+        .animated-button::after, #send-button::after {
+            content: '';
+            background: rgba(255, 255, 255, 0.2);
+            display: block;
+            position: absolute;
+            border-radius: 50%;
+            padding-top: 350%;
+            padding-left: 350%;
+            margin-left: -20px !important; /* !important for specificity */
+            margin-top: -120%;
+            opacity: 0;
+            transition: all 0.8s;
+            pointer-events: none; /* Ensure it doesn't block clicks */
+        }
+
+        .animated-button:active::after, #send-button:active::after {
+            padding-top: 0;
+            padding-left: 0;
+            margin-left: 0;
+            margin-top: 0;
+            opacity: 1;
+            transition: 0s;
+        }
+
+
+        @media (max-width: 768px) { /* Adjusted breakpoint */
+            #app-header {
+                font-size: 1.5em;
+                padding: 12px 15px;
+            }
+            #logo { font-size: 1em; }
+            .auth-buttons button, .settings-button {
+                padding: 6px 10px;
+                margin-left: 5px;
+                font-size: 0.75em;
+            }
+             #chat-container {
                 width: 100%;
-                height: 100vh;
-                max-height: none;
+                height: calc(100vh - 125px); /* Header + Footer height for mobile */
+                margin-top: 65px; /* Approx header height */
                 border-radius: 0;
             }
-            #chat-header {
-                border-top-left-radius: 0;
-                border-top-right-radius: 0;
+            #chat-header-internal {
+                padding: 10px 15px;
+                font-size: 1.1em;
+                border-radius: 0;
             }
-            #chat-messages {
-                padding: 15px;
+            .auraa-chat-title img { height: 20px; margin-right: 8px;}
+             #chat-messages {
+                padding: 15px 10px; /* Less horizontal padding */
             }
             .message {
                 max-width: 90%;
-                padding: 12px 18px;
+                padding: 10px 12px;
+                font-size: 0.85em;
+            }
+            .auraa-logo-chat {
+                width: 24px;
+                height: 24px;
+                font-size: 0.8em;
+                margin-right: 8px;
             }
             #input-area {
-                padding: 10px 15px;
+                padding: 8px 10px; /* Tighter padding */
+                border-radius: 0;
             }
             #user-input {
-                padding: 10px 15px;
-                font-size: 0.95em;
+                padding: 8px 12px;
+                font-size: 0.85em;
+                border-radius: 20px;
             }
             #send-button {
-                width: 45px;
-                height: 45px;
+                width: 36px; /* Slightly smaller */
+                height: 36px;
+            }
+            #send-button svg {
+                width: 16px;
+                height: 16px;
+            }
+            .typing-indicator {
+                padding: 6px 15px;
+                font-size: 0.75em;
+                margin-left: 40px; /* Adjust if logo size changes */
+            }
+            #app-footer {
+                padding: 8px 15px;
+                font-size: 0.7em;
+            }
+            .settings-dropdown {
+                top: 50px; /* Adjust for mobile header */
+                right: 10px;
+                font-size: 0.8em;
+                min-width: 130px;
+            }
+            .settings-dropdown li a {
+                padding: 7px 12px;
+            }
+            .info-button {
+                width: 24px;
+                height: 24px;
+                font-size: 0.7em;
+            }
+            #info-modal {
+                padding: 15px;
+                font-size: 0.85em;
+                width: 80%;
             }
         }
     </style>
 </head>
 <body>
-    <div id="chat-container" class="theme-aura">
-        <div id="chat-header">AURAA</div>
-        <div id="chat-messages">
-            <div class="typing-indicator"><span></span><span></span><span></span></div>
+    <header id="app-header">
+        <a href="#" id="logo">AURAA</a> <div class="header-controls">
+            <div class="auth-buttons">
+                <button class="animated-button" id="signup-btn">Sign Up</button>
+                <button class="animated-button" id="signin-btn">Sign In</button>
+            </div>
+            <button class="settings-button animated-button" id="settings-trigger-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311a1.464 1.464 0 0 1-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413-1.4-2.397 0-2.81l.34-.1a1.464 1.464 0 0 1 .872-2.105l-.17-.31c-.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.858 2.929 2.929 0 0 1 0 5.858z"/>
+                </svg>
+            </button>
         </div>
+    </header>
+
+    <div class="settings-dropdown" id="settings-menu">
+        <ul>
+            <li><a href="#" id="setting-theme">Theme: Dark</a></li>
+            <li><a href="#" id="setting-lang">Language: English</a></li>
+            <li><a href="#" id="setting-notify">Notifications: On</a></li>
+            <li><hr style="border-color: var(--border-color); margin: 5px 0;"></li>
+            <li><a href="#" id="setting-profile">Your Profile</a></li>
+            <li><a href="#" id="setting-signout">Sign Out</a></li>
+        </ul>
+    </div>
+
+    <div id="chat-container" class="theme-aura">
+        <div id="chat-header-internal">
+            <div class="auraa-chat-title">AURAA</div>
+            <button class="info-button" id="info-trigger-btn">i</button>
+        </div>
+        <div id="chat-messages">
+            </div>
         <div id="input-area">
             <input type="text" id="user-input" placeholder="Ask AURAA anything...">
             <button id="send-button" title="Send">
@@ -306,38 +633,69 @@
         </div>
     </div>
 
+    <div id="info-modal">
+        <p><strong>AURAA Information</strong></p>
+        <p>AURAA's frontend has been designed and made by Sarnab.</p>
+        <p>The backend is powered by the API of Google AI model Gemini.</p>
+        <button id="close-info-modal-btn">Close</button>
+    </div>
+
+    <footer id="app-footer">
+        <p>&copy; <span id="current-year"></span> AURAA AI. All rights reserved. | <a href="#terms" id="terms-link">Terms & Conditions</a></p>
+    </footer>
+
     <script>
         const chatMessages = document.getElementById('chat-messages');
         const userInputField = document.getElementById('user-input');
         const sendButton = document.getElementById('send-button');
-        const typingIndicator = document.querySelector('.typing-indicator');
+        
+        const infoTriggerBtn = document.getElementById('info-trigger-btn');
+        const infoModal = document.getElementById('info-modal');
+        const closeInfoModalBtn = document.getElementById('close-info-modal-btn');
+
+        const settingsTriggerBtn = document.getElementById('settings-trigger-btn');
+        const settingsMenu = document.getElementById('settings-menu');
+
+        // Typing Indicator Element (created once)
+        const typingIndicator = document.createElement('div');
+        typingIndicator.classList.add('typing-indicator');
+        typingIndicator.innerHTML = '<span></span><span></span><span></span>';
+        // Prepend it to chatMessages but keep it hidden initially
+        chatMessages.prepend(typingIndicator);
+
 
         function addMessage(text, sender) {
             const messageWrapper = document.createElement('div');
             messageWrapper.classList.add('message', `${sender}-message`);
 
-           
-            const textNode = document.createElement('div');
-           
-            textNode.innerHTML = text.replace(/\n/g, '<br>');
-            messageWrapper.appendChild(textNode);
+            const logoHTML = sender === 'auraa' ? '<div class="auraa-logo-chat">[A]</div>' : '';
             
-            const timestamp = document.createElement('div');
-            timestamp.classList.add('message-timestamp');
-            timestamp.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            messageWrapper.appendChild(timestamp);
-
+            messageWrapper.innerHTML = `
+                ${logoHTML}
+                <div class="message-content-wrapper">
+                    <div class="message-text">${text.replace(/\n/g, '<br>')}</div>
+                    <div class="message-timestamp">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                </div>
+            `;
+            
+            // Insert message before the typing indicator
             chatMessages.insertBefore(messageWrapper, typingIndicator);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        function showTyping() { typingIndicator.style.display = 'flex'; chatMessages.scrollTop = chatMessages.scrollHeight; }
-        function hideTyping() { typingIndicator.style.display = 'none'; }
+        function showTyping() { 
+            typingIndicator.style.display = 'flex'; 
+            chatMessages.scrollTop = chatMessages.scrollHeight; 
+        }
+        function hideTyping() { 
+            typingIndicator.style.display = 'none'; 
+        }
         
         async function getAuraaResponse(userInput) {
-            
             const backendUrl = 'https://auraa-sb-2007.onrender.com/ask-auraa'; 
-            
+            // This is a placeholder. Replace with your actual backend endpoint.
+            // If you don't have a backend yet, you can simulate a response:
+            // return new Promise(resolve => setTimeout(() => resolve(`AURAA echoes: ${userInput}`), 1000));
 
             try {
                 const response = await fetch(backendUrl, {
@@ -347,16 +705,17 @@
                 });
 
                 if (!response.ok) {
-                    const errorData = await response.json();
-                    return `Error from server: ${errorData.response || 'Could not connect.'}`;
+                    const errorData = await response.json().catch(() => ({ response: "Server returned an invalid JSON."})); // Catch JSON parse error
+                    console.error("Server Error Data:", errorData);
+                    return `Error from server: ${errorData.response || response.statusText || 'Could not connect properly.'}`;
                 }
 
                 const data = await response.json();
-                return data.response; 
+                return data.response || "Received an empty response from AURAA.";
 
             } catch (error) {
                 console.error("Connection Error:", error);
-                return "I'm having trouble connecting to my core systems. Please ensure the backend server is running and the URL is correct.";
+                return "I'm having trouble connecting. Please check the backend or try again later.";
             }
         }
 
@@ -365,21 +724,79 @@
             if (userInput === "") return;
             addMessage(userInput, 'user');
             userInputField.value = "";
+            userInputField.focus(); // Keep focus on input
             showTyping();
-            const auraaResponse = await getAuraaResponse(userInput);
-            hideTyping();
-            addMessage(auraaResponse, 'auraa');
+            try {
+                const auraaResponse = await getAuraaResponse(userInput);
+                addMessage(auraaResponse, 'auraa');
+            } catch (e) { // Catch any unexpected error from getAuraaResponse itself
+                addMessage("An unexpected error occurred while fetching the response.", 'auraa');
+            } finally {
+                hideTyping();
+            }
         }
 
         sendButton.addEventListener('click', handleUserInput);
         userInputField.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleUserInput();
+            if (e.key === 'Enter' && !e.shiftKey) { // Send on Enter, allow Shift+Enter for newline
+                e.preventDefault(); // Prevent default newline in input
+                handleUserInput();
+            }
         });
 
+        // Info Modal Logic
+        infoTriggerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            infoModal.style.display = 'block';
+        });
+        closeInfoModalBtn.addEventListener('click', () => {
+            infoModal.style.display = 'none';
+        });
+        
+        // Settings Menu Logic
+        settingsTriggerBtn.addEventListener('click', (event) => {
+            event.stopPropagation(); 
+            settingsMenu.classList.toggle('open');
+            infoModal.style.display = 'none'; // Close info modal if open
+        });
+
+        // Close modals/dropdowns when clicking outside
+        document.addEventListener('click', (event) => {
+            if (infoModal.style.display === 'block' && !infoModal.contains(event.target) && !infoTriggerBtn.contains(event.target)) {
+                infoModal.style.display = 'none';
+            }
+            if (settingsMenu.classList.contains('open') && !settingsMenu.contains(event.target) && !settingsTriggerBtn.contains(event.target)) {
+                settingsMenu.classList.remove('open');
+            }
+        });
+        
+        // Update current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Placeholder for Terms link
+        document.getElementById('terms-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert("Terms & Conditions section to be implemented.");
+            // You would typically navigate to a terms page or show a modal
+        });
+
+        // Placeholder for Auth buttons
+        document.getElementById('signup-btn').addEventListener('click', () => alert('Sign Up functionality to be implemented.'));
+        document.getElementById('signin-btn').addEventListener('click', () => alert('Sign In functionality to be implemented.'));
+
+        // Placeholder for Settings options
+        document.getElementById('setting-theme').addEventListener('click', (e) => {e.preventDefault(); alert('Theme settings to be implemented.')});
+        document.getElementById('setting-lang').addEventListener('click', (e) => {e.preventDefault(); alert('Language settings to be implemented.')});
+        document.getElementById('setting-notify').addEventListener('click', (e) => {e.preventDefault(); alert('Notification settings to be implemented.')});
+        document.getElementById('setting-profile').addEventListener('click', (e) => {e.preventDefault(); alert('Profile page/settings to be implemented.')});
+        document.getElementById('setting-signout').addEventListener('click', (e) => {e.preventDefault(); alert('Sign out functionality to be implemented.')});
+
+
+        // Initial welcome message
         window.onload = () => {
             userInputField.focus();
             setTimeout(() => {
-                addMessage("Hi, I'm AURAA made by Sarnab. What can I help you with?", 'auraa');
+                addMessage("Hi, I'm AURAA. How can I assist you today?", 'auraa');
             }, 500);
         };
     </script>
