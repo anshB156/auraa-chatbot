@@ -76,7 +76,7 @@
             position: relative;
         }
 
-        /* Animated Background */
+        
         .bg-animation {
             position: fixed;
             top: 0;
@@ -94,7 +94,7 @@
             66% { transform: translateX(20px) translateY(10px) scale(0.98); }
         }
 
-        /* Floating Orbs */
+        
         .orb {
             position: fixed;
             border-radius: 50%;
@@ -137,7 +137,7 @@
             66% { transform: translateY(15px) rotate(240deg); }
         }
 
-        /* Navigation */
+        
         .nav-header {
             background: var(--glass);
             backdrop-filter: blur(20px) saturate(180%);
@@ -261,7 +261,7 @@
             transform: translateX(28px);
         }
 
-        /* Main Container */
+       
         .main-container {
             flex: 1;
             display: flex;
@@ -305,7 +305,7 @@
             z-index: -1;
         }
 
-        /* Messages Area */
+        
         .messages-container {
             flex: 1;
             padding: 32px;
@@ -371,7 +371,7 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
-        /* Typing Indicator */
+        
         .typing-indicator {
             display: none;
             align-items: center;
@@ -400,7 +400,7 @@
             40% { transform: scale(1.2); opacity: 1; }
         }
 
-        /* Input Area */
+        
         .input-container {
             padding: 32px;
             background: var(--glass);
@@ -523,7 +523,7 @@
             transition: all var(--transition-smooth);
         }
 
-        /* Modals */
+        
         .modal {
             display: none;
             position: fixed;
@@ -641,7 +641,7 @@
             left: 0;
         }
 
-        /* Form Elements */
+        
         .form-group {
             margin-bottom: 20px;
         }
@@ -699,7 +699,7 @@
             box-shadow: none;
         }
 
-        /* Settings */
+        
         .setting-item {
             display: flex;
             justify-content: space-between;
@@ -756,7 +756,7 @@
             transform: translateX(24px);
         }
 
-        /* Responsive Design */
+       
         @media (max-width: 768px) {
             .nav-header {
                 padding: 16px 20px;
@@ -832,7 +832,7 @@
             }
         }
 
-        /* Accessibility */
+        
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -855,15 +855,15 @@
     </style>
 </head>
 <body class="theme-dark">
-    <!-- Animated Background -->
+    
     <div class="bg-animation"></div>
     
-    <!-- Floating Orbs -->
+    
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
 
-    <!-- Navigation -->
+    
     <nav class="nav-header">
         <div class="nav-brand">
             <div class="brand-icon">A</div>
@@ -892,7 +892,7 @@
         </div>
     </nav>
 
-    <!-- Main Chat Interface -->
+    
     <div class="main-container">
         <div class="chat-container">
             <div class="messages-container" id="messages">
@@ -919,7 +919,7 @@
         </div>
     </div>
 
-    <!-- Info Modal -->
+    
     <div class="modal" id="info-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -953,7 +953,7 @@
         </div>
     </div>
 
-    <!-- Auth Modal -->
+    
     <div class="modal" id="auth-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -980,7 +980,7 @@
         </div>
     </div>
 
-    <!-- Settings Modal -->
+    
     <div class="modal" id="settings-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1034,7 +1034,7 @@
     </div>
 
     <script>
-        // DOM Elements
+        
         const messagesContainer = document.getElementById('messages');
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
@@ -1042,7 +1042,7 @@
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
 
-        // Modal Elements
+        
         const modals = {
             info: {
                 modal: document.getElementById('info-modal'),
@@ -1061,7 +1061,7 @@
             }
         };
 
-        // Settings switches
+        
         const switches = {
             theme: document.getElementById('theme-switch'),
             animations: document.getElementById('animations-switch'),
@@ -1069,7 +1069,7 @@
             scroll: document.getElementById('scroll-switch')
         };
 
-        // Theme Management
+        
         function toggleTheme() {
             body.classList.toggle('theme-dark');
             body.classList.toggle('theme-light');
@@ -1077,7 +1077,7 @@
             switches.theme.classList.toggle('active', isDark);
         }
 
-        // Modal Management
+        
         function openModal(modalName) {
             modals[modalName].modal.style.display = 'block';
         }
@@ -1086,12 +1086,12 @@
             modals[modalName].modal.style.display = 'none';
         }
 
-        // Switch Management
+        
         function toggleSwitch(switchElement) {
             switchElement.classList.toggle('active');
         }
 
-        // Message Management
+        
         function addMessage(content, sender) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${sender}-message`;
@@ -1126,7 +1126,7 @@
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
-        // API Communication
+        
         async function getAuraaResponse(userInput) {
             const backendUrl = 'https://auraa-sb-2007.onrender.com/ask-auraa';
 
@@ -1151,7 +1151,7 @@
             }
         }
 
-        // Message Handling
+        
         async function handleUserInput() {
             const message = userInput.value.trim();
             if (!message) return;
@@ -1165,20 +1165,20 @@
             addMessage(response, 'auraa');
         }
 
-        // Event Listeners
+        
         themeToggle.addEventListener('click', toggleTheme);
         sendBtn.addEventListener('click', handleUserInput);
         userInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') handleUserInput();
         });
 
-        // Modal event listeners
+      
         Object.entries(modals).forEach(([name, modal]) => {
             modal.btn.addEventListener('click', () => openModal(name));
             modal.close.addEventListener('click', () => closeModal(name));
         });
 
-        // Close modals on outside click
+        
         window.addEventListener('click', (e) => {
             Object.entries(modals).forEach(([name, modal]) => {
                 if (e.target === modal.modal) {
@@ -1187,7 +1187,7 @@
             });
         });
 
-        // Switch event listeners
+        
         Object.entries(switches).forEach(([name, switchElement]) => {
             switchElement.addEventListener('click', () => {
                 if (name === 'theme') {
@@ -1198,7 +1198,7 @@
             });
         });
 
-        // Initialize
+        
         window.addEventListener('load', () => {
             userInput.focus();
             setTimeout(() => {
@@ -1206,7 +1206,7 @@
             }, 1000);
         });
 
-        // Performance optimizations
+        
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
