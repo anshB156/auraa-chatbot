@@ -9,41 +9,89 @@
         :root {
             --font-primary: 'Montserrat', sans-serif;
             --font-secondary: 'Poppins', sans-serif;
-            --border-radius-main: 25px;
-            --border-radius-msg: 18px;
-            --shadow-elevation-low: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-elevation-medium: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-elevation-high: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --border-radius-main: 20px; /* Slightly reduced for a sleeker look */
+            --border-radius-msg: 15px;  /* Slightly reduced */
+            --shadow-elevation-low: 0 2px 4px -1px rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-elevation-medium: 0 6px 10px -3px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-elevation-high: 0 15px 20px -5px rgb(0 0 0 / 0.1), 0 6px 8px -6px rgb(0 0 0 / 0.1);
+
+            /* Transitions */
+            --transition-speed: 0.3s;
+            --transition-ease: ease-in-out;
         }
 
-       
+        /* --- Dark Theme (Black & Silver - Default) --- */
         .theme-aura {
-            /* --- Black and Silver Theme for AURAA --- */
             --primary-color: #B0B0B0;       /* Silver for general accents */
             --secondary-color: #C8C8C8;    /* Lighter Silver for hovers, gradients */
             --primary-color-rgb: 176, 176, 176; /* RGB for --primary-color (Silver #B0B0B0) */
             
-            --accent-glow: rgba(192, 192, 192, 0.25); /* Subtle silver glow for header */
+            --accent-glow: rgba(192, 192, 192, 0.2); /* Subtle silver glow */
 
             --bg-color: #0A0A0A;            /* Very dark, almost black, for the page background */
             --surface-color: #141414;      /* Dark charcoal for chat container background */
+            --header-footer-bg: #000000;    /* Black for header/footer areas */
             
             --font-color: #E0E0E0;          /* Light silver/off-white text */
+            --font-color-darker: #1A1A1A;   /* For text on light silver buttons */
             --muted-font-color: #888888;    /* Medium-dark gray for muted text */
             
-            /* Message Backgrounds */
             --user-msg-bg: #333333;         /* User messages - dark silver/charcoal */
-            --bot-msg-bg: #222222;          /* AURAA messages - very dark charcoal, more "black" */
+            --bot-msg-bg: #222222;          /* AURAA messages - very dark charcoal */
             
-            /* Header */
-            --header-bg: linear-gradient(90deg, #000000, #181818); /* Black to dark charcoal gradient */
-            
-            /* Borders and Inputs */
             --border-color: #404040;        /* Dark silver border */
             --input-bg: #1F1F1F;            /* Dark input background */
             --input-border: #505050;        /* Medium silver border for input */
-            /* Send button will use a gradient of primary and secondary colors */
+
+            --button-bg: var(--primary-color);
+            --button-text: var(--font-color-darker);
+            --button-hover-bg: var(--secondary-color);
+            --button-outline-border: var(--primary-color);
+            --button-outline-text: var(--primary-color);
+            --button-outline-hover-bg: var(--primary-color);
+            --button-outline-hover-text: var(--font-color-darker);
+
+            --icon-fill: #E0E0E0;
+            --send-icon-fill: #111111; /* Dark fill for icon on silver send button */
+            --settings-panel-bg: #1D1D1D;
         }
+
+        /* --- Light Theme --- */
+        .theme-aura-light {
+            --primary-color: #555555;       /* Dark Gray for accents */
+            --secondary-color: #777777;    /* Medium Gray */
+            --primary-color-rgb: 85, 85, 85; 
+            
+            --accent-glow: rgba(0, 0, 0, 0.05);
+
+            --bg-color: #F0F2F5;            /* Light gray page background */
+            --surface-color: #FFFFFF;      /* White chat container */
+            --header-footer-bg: #FFFFFF;    /* White for header/footer areas */
+
+            --font-color: #222222;          /* Dark text */
+            --font-color-darker: #FFFFFF;   /* For text on dark buttons */
+            --muted-font-color: #666666;
+            
+            --user-msg-bg: #E9ECEF;         /* Light gray for user messages */
+            --bot-msg-bg: #F8F9FA;          /* Off-white for AURAA messages */
+            
+            --border-color: #DDE2E7;        /* Light border */
+            --input-bg: #FFFFFF;
+            --input-border: #CED4DA;
+
+            --button-bg: var(--primary-color);
+            --button-text: var(--font-color-darker);
+            --button-hover-bg: var(--secondary-color);
+            --button-outline-border: var(--primary-color);
+            --button-outline-text: var(--primary-color);
+            --button-outline-hover-bg: var(--primary-color);
+            --button-outline-hover-text: var(--font-color-darker);
+
+            --icon-fill: #333333;
+            --send-icon-fill: #FFFFFF; /* Light fill for icon on dark send button */
+            --settings-panel-bg: #FDFDFD;
+        }
+
 
         body {
             font-family: var(--font-secondary);
@@ -55,107 +103,197 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            transition: background-color 0.3s, color 0.3s;
-            overflow: hidden; 
+            transition: background-color var(--transition-speed) var(--transition-ease), color var(--transition-speed) var(--transition-ease);
+            overflow-x: hidden; 
         }
 
         #chat-container {
             width: 95%;
             max-width: 700px; 
             height: 90vh;
-            max-height: 800px;
+            max-height: 800px; /* Max height for very tall screens */
             background-color: var(--surface-color);
             border-radius: var(--border-radius-main);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.03); /* Adjusted shadow for dark theme */
+            box-shadow: var(--shadow-elevation-high);
             border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             overflow: hidden;
             position: relative; 
+            transition: background-color var(--transition-speed) var(--transition-ease), border-color var(--transition-speed) var(--transition-ease);
         }
 
         #chat-header {
-            background: var(--header-bg);
-            color: var(--font-color); /* Changed from white to var(--font-color) for consistency */
-            padding: 20px 25px;
-            text-align: center;
+            background: var(--header-footer-bg);
+            color: var(--font-color);
+            padding: 10px 15px; /* Reduced padding */
             font-family: var(--font-primary);
-            font-size: 1.8em;
-            font-weight: 700;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             position: relative;
             z-index: 10;
-            overflow: hidden;
-            border-top-left-radius: var(--border-radius-main);
-            border-top-right-radius: var(--border-radius-main);
-            border-bottom: 1px solid var(--border-color); /* Added subtle border */
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color var(--transition-speed) var(--transition-ease), border-color var(--transition-speed) var(--transition-ease), color var(--transition-speed) var(--transition-ease);
+        }
+        
+        .header-title {
+            font-size: 1.5em; /* Adjusted size */
+            font-weight: 700;
         }
 
-        #chat-header::before { 
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Space between buttons */
+        }
+
+        .header-actions .btn {
+            padding: 6px 12px;
+            font-size: 0.85em;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color var(--transition-speed) var(--transition-ease), color var(--transition-speed) var(--transition-ease), transform 0.15s ease-out;
+            border: 1px solid transparent;
+            font-weight: 500;
+        }
+        .header-actions .btn-primary {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border-color: var(--button-bg);
+        }
+        .header-actions .btn-primary:hover {
+            background-color: var(--button-hover-bg);
+            border-color: var(--button-hover-bg);
+            transform: translateY(-1px);
+        }
+        .header-actions .btn-outline {
+            background-color: transparent;
+            color: var(--button-outline-text);
+            border: 1px solid var(--button-outline-border);
+        }
+        .header-actions .btn-outline:hover {
+            background-color: var(--button-outline-hover-bg);
+            color: var(--button-outline-hover-text);
+            transform: translateY(-1px);
+        }
+        .header-actions .btn-icon {
+            background: transparent;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+         .header-actions .btn-icon:hover {
+            background-color: rgba(128,128,128,0.1);
+         }
+        .header-actions .btn-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--icon-fill);
+            transition: fill var(--transition-speed) var(--transition-ease);
+        }
+
+        /* Settings Panel */
+        #settings-panel {
+            position: absolute;
+            top: 55px; /* Below header */
+            right: 15px;
+            background-color: var(--settings-panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow-elevation-medium);
+            z-index: 100;
+            width: 200px;
+            padding: 10px;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            gap: 8px;
+            transition: background-color var(--transition-speed) var(--transition-ease), border-color var(--transition-speed) var(--transition-ease);
+        }
+        #settings-panel a, #settings-panel button {
+            display: block;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: var(--font-color);
+            border-radius: 6px;
+            transition: background-color 0.2s ease, color var(--transition-speed) var(--transition-ease);
+            background: none;
+            border: none;
+            text-align: left;
+            width: 100%;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        #settings-panel a:hover, #settings-panel button:hover {
+            background-color: var(--primary-color);
+            color: var(--font-color-darker);
+        }
+        #theme-toggle-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #theme-toggle-button .theme-icon {
+            margin-left: auto;
+            font-size: 1.1em;
+        }
+
+
+        #chat-header::before { /* Glow effect */
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%); /* Adjusted gradient */
-            opacity: 0.6; /* Increased opacity for better visibility of glow */
-            filter: blur(15px); /* Adjusted blur */
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center top, var(--accent-glow) 0%, transparent 60%);
+            opacity: 0.7;
+            filter: blur(10px);
             z-index: -1;
+            pointer-events: none;
         }
 
         #chat-messages {
             flex-grow: 1;
-            padding: 20px;
+            padding: 15px; /* Adjusted padding */
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px; /* Adjusted gap */
             -webkit-overflow-scrolling: touch; 
-            padding-bottom: 30px; 
         }
         
-      
-        #chat-messages::-webkit-scrollbar {
-            width: 8px;
-        }
-        #chat-messages::-webkit-scrollbar-track {
-            background: var(--surface-color);
-            border-radius: 10px;
-        }
+        #chat-messages::-webkit-scrollbar { width: 8px; }
+        #chat-messages::-webkit-scrollbar-track { background: transparent; } /* Track to match surface */
         #chat-messages::-webkit-scrollbar-thumb {
             background: var(--primary-color);
             border-radius: 10px;
-            border: 2px solid var(--surface-color);
+            border: 2px solid var(--surface-color); /* Border matches surface for 'floating' look */
         }
-        #chat-messages::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary-color);
-        }
+        #chat-messages::-webkit-scrollbar-thumb:hover { background: var(--secondary-color); }
 
         .message {
-            padding: 14px 20px;
+            padding: 10px 15px; /* Adjusted padding */
             border-radius: var(--border-radius-msg);
-            max-width: 85%; 
-            line-height: 1.6;
-            animation: fadeInMessage 0.6s ease-out forwards;
-            position: relative;
+            max-width: 80%; /* Slightly reduced */
+            line-height: 1.5;
+            animation: fadeInMessage 0.5s var(--transition-ease) forwards;
             box-shadow: var(--shadow-elevation-low);
             word-wrap: break-word; 
+            transition: background-color var(--transition-speed) var(--transition-ease), color var(--transition-speed) var(--transition-ease);
         }
 
         @keyframes fadeInMessage {
-            from { opacity: 0; transform: translateY(20px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .user-message {
             background: var(--user-msg-bg);
-            color: var(--font-color); /* Ensures readability */
+            color: var(--font-color);
             align-self: flex-end;
             border-bottom-right-radius: 5px; 
-            text-align: right;
         }
 
         .auraa-message {
@@ -166,100 +304,80 @@
         }
 
         .message-timestamp {
-            font-size: 0.75em;
+            font-size: 0.7em; /* Slightly smaller */
             color: var(--muted-font-color);
-            margin-top: 8px;
+            margin-top: 6px;
             display: block; 
-            opacity: 0.8;
-            font-family: var(--font-secondary);
-            font-weight: 300;
+            opacity: 0.9;
+            transition: color var(--transition-speed) var(--transition-ease);
         }
         .user-message .message-timestamp { text-align: right; }
-        .auraa-message .message-timestamp { text-align: left; }
 
         #input-area {
             display: flex;
-            padding: 15px 20px;
+            padding: 10px 15px; /* Adjusted padding */
             border-top: 1px solid var(--border-color);
-            background-color: var(--surface-color); /* Matches chat container bg */
+            background-color: var(--header-footer-bg); /* Matches header */
             gap: 10px;
+            transition: background-color var(--transition-speed) var(--transition-ease), border-color var(--transition-speed) var(--transition-ease);
         }
 
         #user-input {
             flex-grow: 1;
-            padding: 12px 20px;
+            padding: 10px 18px; /* Adjusted padding */
             border: 1px solid var(--input-border);
-            border-radius: 30px; 
-            font-size: 1em;
+            border-radius: 20px; /* Rounded input */
+            font-size: 0.95em;
             background-color: var(--input-bg);
             color: var(--font-color);
             outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            font-family: var(--font-secondary);
+            transition: border-color var(--transition-speed) var(--transition-ease), box-shadow var(--transition-speed) var(--transition-ease), background-color var(--transition-speed) var(--transition-ease), color var(--transition-speed) var(--transition-ease);
         }
-        #user-input::placeholder {
-            color: var(--muted-font-color);
-            opacity: 0.7;
-        }
+        #user-input::placeholder { color: var(--muted-font-color); opacity: 0.8; }
         #user-input:focus {
-            border-color: var(--primary-color); /* Uses silver for focus border */
-            box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.3); /* Uses silver for focus shadow */
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
         }
 
         #send-button {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); /* Silver gradient */
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             border: none;
-            color: var(--black); /* Changed icon color to black for contrast on silver */
             cursor: pointer;
-            width: 48px; 
-            height: 48px;
+            width: 42px; height: 42px; /* Adjusted size */
             border-radius: 50%; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            display: flex; justify-content: center; align-items: center;
+            transition: background var(--transition-speed) var(--transition-ease), transform 0.2s var(--transition-ease), box-shadow var(--transition-speed) var(--transition-ease);
             box-shadow: var(--shadow-elevation-low);
             flex-shrink: 0; 
         }
         #send-button:hover {
-            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color)); /* Inverted silver gradient */
-            transform: translateY(-2px); 
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            transform: scale(1.05) translateY(-1px); 
             box-shadow: var(--shadow-elevation-medium);
         }
-        #send-button:active {
-            transform: translateY(0); 
-            box-shadow: var(--shadow-elevation-low);
-        }
-
+        #send-button:active { transform: scale(0.98); box-shadow: var(--shadow-elevation-low); }
         #send-button svg {
-            width: 20px;
-            height: 20px;
-            fill: #111111; /* Dark fill for icon for better contrast on silver button */
-            transition: fill 0.3s ease;
+            width: 18px; height: 18px; /* Adjusted icon size */
+            fill: var(--send-icon-fill);
+            transition: fill var(--transition-speed) var(--transition-ease);
         }
-        /* #send-button:hover svg { Removed as fill is consistently dark now } */
-
 
         .typing-indicator {
-            display: none; /* Initially hidden */
+            display: none; 
             align-items: center;
-            justify-content: flex-start; 
-            padding: 10px 20px; /* Adjusted padding */
-            margin-left: 5px; /* Align with Auraa messages */
+            padding: 8px 15px;
             color: var(--muted-font-color);
-            font-size: 0.9em;
-            gap: 5px;
-            /* margin-top: -10px; Removed, let it flow naturally */
+            font-size: 0.85em;
+            gap: 4px;
+            transition: color var(--transition-speed) var(--transition-ease);
         }
         .typing-indicator span {
-            height: 8px;
-            width: 8px;
-            background-color: var(--primary-color); /* Silver dots */
-            border-radius: 50%;
-            display: inline-block;
-            margin: 0 2px;
+            height: 7px; width: 7px;
+            background-color: var(--primary-color);
+            border-radius: 50%; display: inline-block; margin: 0 1px;
             animation: bounce 1.4s infinite ease-in-out both;
-            opacity: 0.9; /* Slightly more visible */
+            opacity: 0.9;
+            transition: background-color var(--transition-speed) var(--transition-ease);
         }
         .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
         .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
@@ -268,43 +386,58 @@
             40% { transform: scale(1.0); opacity: 1; }
         }
 
-    
-        @media (max-width: 600px) {
-            #chat-container {
-                width: 100%;
-                height: 100vh;
-                max-height: none;
-                border-radius: 0;
-                border: none; /* Remove border on full screen */
+        /* Responsive Adjustments */
+        @media (max-width: 768px) { /* Tablet and smaller */
+            .header-title { font-size: 1.3em; }
+            .header-actions .btn-primary, .header-actions .btn-outline {
+                padding: 5px 8px;
+                font-size: 0.8em;
             }
-            #chat-header {
-                border-top-left-radius: 0;
-                border-top-right-radius: 0;
-            }
-            #chat-messages {
-                padding: 15px;
-            }
-            .message {
-                max-width: 90%;
-                padding: 12px 18px;
-            }
-            #input-area {
-                padding: 10px 15px;
-            }
-            #user-input {
-                padding: 10px 15px;
-                font-size: 0.95em;
-            }
-            #send-button {
-                width: 45px;
-                height: 45px;
-            }
+            .header-actions .btn-icon svg { width: 18px; height: 18px; }
+             #settings-panel { top: 50px; } /* Adjust if header height changes */
         }
+
+        @media (max-width: 600px) { /* Mobile */
+            #chat-container {
+                width: 100%; height: 100%; max-height: none;
+                border-radius: 0; border: none;
+            }
+            #chat-header { border-top-left-radius: 0; border-top-right-radius: 0; }
+            .header-title { font-size: 1.2em; }
+            /* Hide text buttons on mobile, keep icons or make them smaller */
+            .header-actions .auth-btn-text { display: none; } /* Class to add to text part of button if needed */
+
+            .message { max-width: 85%; }
+            #user-input { padding: 9px 15px; font-size: 0.9em; }
+            #send-button { width: 40px; height: 40px; }
+            #send-button svg { width: 16px; height: 16px; }
+        }
+         @media (max-width: 400px) { /* Smaller Mobile */
+            .header-actions { gap: 5px; }
+            .header-actions .btn { padding: 4px 6px; font-size: 0.75em;}
+            .header-title { font-size: 1.1em; }
+         }
     </style>
 </head>
-<body>
-    <div id="chat-container" class="theme-aura">
-        <div id="chat-header">AURAA</div>
+<body class="theme-aura"> {/* Default to dark theme */}
+    <div id="chat-container">
+        <div id="chat-header">
+            <span class="header-title">AURAA</span>
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline">Sign In</a>
+                <a href="#" class="btn btn-primary">Sign Up</a>
+                <button class="btn btn-icon" id="settings-button" title="Settings">
+                    <svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+                </button>
+            </div>
+            <div id="settings-panel">
+                <a href="#">Info</a>
+                <a href="#">Terms & Conditions</a>
+                <button id="theme-toggle-button">
+                    Switch Theme <span class="theme-icon">☀️</span>
+                </button>
+            </div>
+        </div>
         <div id="chat-messages">
             <div class="typing-indicator">Auraa is typing...<span></span><span></span><span></span></div>
         </div>
@@ -318,84 +451,4 @@
 
     <script>
         const chatMessages = document.getElementById('chat-messages');
-        const userInputField = document.getElementById('user-input');
-        const sendButton = document.getElementById('send-button');
-        const typingIndicator = document.querySelector('.typing-indicator');
-
-        function addMessage(text, sender) {
-            const messageWrapper = document.createElement('div');
-            messageWrapper.classList.add('message', `${sender}-message`);
-           
-            const textNode = document.createElement('div');
-            textNode.innerHTML = text.replace(/\n/g, '<br>'); // Sanitize this if user input can contain HTML
-            messageWrapper.appendChild(textNode);
-            
-            const timestamp = document.createElement('div');
-            timestamp.classList.add('message-timestamp');
-            timestamp.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            messageWrapper.appendChild(timestamp);
-
-            // Insert message before the typing indicator
-            chatMessages.insertBefore(messageWrapper, typingIndicator);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function showTyping() { 
-            typingIndicator.style.display = 'flex'; 
-            chatMessages.scrollTop = chatMessages.scrollHeight; 
-        }
-        function hideTyping() { 
-            typingIndicator.style.display = 'none'; 
-        }
-        
-        async function getAuraaResponse(userInput) {
-            const backendUrl = 'https://auraa-sb-2007.onrender.com/ask-auraa'; 
-            try {
-                const response = await fetch(backendUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ prompt: userInput })
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json().catch(() => ({ response: 'Server returned an error status.' }));
-                    return `Error: ${errorData.response || response.statusText || 'Could not connect.'}`;
-                }
-
-                const data = await response.json();
-                return data.response; 
-
-            } catch (error) {
-                console.error("Connection Error:", error);
-                return "I'm having trouble connecting to my core systems. Please ensure the backend server is running and the URL is correct.";
-            }
-        }
-
-        async function handleUserInput() {
-            const userInput = userInputField.value.trim();
-            if (userInput === "") return;
-            addMessage(userInput, 'user');
-            userInputField.value = "";
-            showTyping();
-            const auraaResponse = await getAuraaResponse(userInput);
-            hideTyping();
-            addMessage(auraaResponse, 'auraa');
-        }
-
-        sendButton.addEventListener('click', handleUserInput);
-        userInputField.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleUserInput();
-        });
-
-        // Initial setup
-        window.onload = () => {
-            userInputField.focus();
-            // Initially hide typing indicator
-            hideTyping(); 
-            setTimeout(() => {
-                addMessage("Hi, I'm AURAA. How can I assist you in this new black and silver interface?", 'auraa');
-            }, 500);
-        };
-    </script>
-</body>
-</html>
+       
